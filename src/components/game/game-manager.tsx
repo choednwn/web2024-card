@@ -7,6 +7,7 @@ import { GameData } from "@/lib/types";
 import { useEffect, useState } from "react";
 
 export default function GameManager() {
+  //! Convert to multiple states and reduce this mess
   const [gameData, setGameData] = useState<GameData>({
     state: GameState.MENU,
     score: 0,
@@ -17,7 +18,7 @@ export default function GameManager() {
   });
 
   return (
-    <div className="relative w-full h-full border border-blue-500">
+    <div className="relative size-full border border-blue-500">
       <GameSelectMenu gameData={gameData} update={setGameData} />
       <GameBoard gameData={gameData} update={setGameData} />
       <GameOverMenu gameData={gameData} update={setGameData} />

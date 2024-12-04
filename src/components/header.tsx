@@ -1,10 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function Header() {
   const router = useRouter();
-  const userId = localStorage.getItem("userID");
+  const userId =
+    typeof window !== "undefined" ? localStorage.getItem("userID") : null;
 
   return (
     <header className="backdrop:bg-background/60 h-fit w-full border-b">

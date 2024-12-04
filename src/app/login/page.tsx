@@ -2,9 +2,11 @@
 
 import { tempAuthUser } from "@/lib/temputils";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function LoginPage() {
-  const userId = localStorage.getItem("userID");
+  const userId =
+    typeof window !== "undefined" ? localStorage.getItem("userID") : null;
   const router = useRouter();
 
   return (
@@ -18,8 +20,7 @@ export default function LoginPage() {
             className="cursor-pointer border-2 border-solid border-black"
             onClick={() => {
               tempAuthUser("tempuser");
-              window.location.reload();
-              router.push("/");
+              window.location.href = "/";
             }}
           >
             TEMP LOGIN BUTTON
