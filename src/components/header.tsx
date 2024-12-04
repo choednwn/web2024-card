@@ -1,13 +1,13 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 
 export default function Header() {
   const router = useRouter();
   const userId = localStorage.getItem("userID");
 
   return (
-    <header className="backdrop:bg-background/60 sticky top-0 z-50 w-full border-b">
+    <header className="backdrop:bg-background/60 h-fit w-full border-b">
       <div className="mx-auto flex h-14 max-w-6xl flex-row items-center justify-between">
         <button
           onClick={() => {

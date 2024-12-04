@@ -8,7 +8,7 @@ export default function LoginPage() {
   const router = useRouter();
 
   return (
-    <div className="flex h-full items-center justify-center border-2 border-solid border-red-500">
+    <div className="flex h-full items-center justify-center">
       {userId ? (
         <>Show Profile</>
       ) : (
@@ -18,6 +18,7 @@ export default function LoginPage() {
             className="cursor-pointer border-2 border-solid border-black"
             onClick={() => {
               tempAuthUser("tempuser");
+              window.location.reload();
               router.push("/");
             }}
           >
