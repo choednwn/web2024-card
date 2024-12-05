@@ -13,7 +13,7 @@ const Header = () => {
   const logout = useLoginStore((state) => state.logout);
 
   return (
-    <header className="bg-background/60 6xl:px-0 flex h-16 w-full flex-row items-center justify-center px-4 backdrop-blur-lg">
+    <header className="6xl:px-0 z-50 flex h-16 w-full flex-row items-center justify-center bg-black/10 px-4 shadow-md backdrop-blur-xl">
       <div className="flex size-full max-w-6xl flex-row items-center justify-between">
         {/* Logo */}
         <Button

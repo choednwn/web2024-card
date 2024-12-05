@@ -2,8 +2,11 @@
 
 기초웹프로그래밍 - 조별 프로젝트
 
-TODO:
+**TODO:**
+- [ ] Create a separate frame component
+- [ ] Login, Register, Scoreboard has same lime frame. Create a component for it... f***
 
+**Features Implemented:** 
 - [ ] Home
   - [ ] Background
   - [x] Play Button

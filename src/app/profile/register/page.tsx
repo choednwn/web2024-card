@@ -3,8 +3,10 @@
 import Button from "@/components/button";
 import { RegisterSettings } from "@/lib/constants";
 import { useLoginStore } from "@/lib/stores";
-import { hashSHA256 } from "@/lib/utils";
+import { cn, hashSHA256 } from "@/lib/utils";
 import { useState } from "react";
+
+const InputStyles = "rounded-lg border-2 border-gray-300 px-2 text-gray-800";
 
 const RegisterPage = () => {
   const register = useLoginStore((state) => state.register);
@@ -52,10 +54,11 @@ const RegisterPage = () => {
   // };
 
   return (
-    <div className="size-fit border border-black">
+    <div className="flex size-fit flex-col items-center gap-4 border-2 border-white bg-lime-100/80 p-12">
+      <h1 className="text-3xl font-bold underline">Register</h1>
       <form
         onSubmit={(e) => onRegisterSubmit(e)}
-        className="flex flex-col gap-2"
+        className="flex flex-col gap-2 border-8 border-gray-100 bg-white p-8"
       >
         <input
           id="userId"
@@ -63,6 +66,7 @@ const RegisterPage = () => {
           placeholder="아이디"
           minLength={RegisterSettings.idMinLength}
           required
+          className={InputStyles}
         />
         <input
           id="userPwd"
@@ -70,9 +74,10 @@ const RegisterPage = () => {
           placeholder="비밀번호"
           minLength={RegisterSettings.pwdMinLength}
           onChange={checkPasswordRules}
-          className={
-            isPwdValid ? "" : "rounded-sm outline outline-2 outline-red-500"
-          }
+          className={cn(
+            InputStyles,
+            isPwdValid ? "" : "rounded-sm outline outline-2 outline-red-500",
+          )}
           required
         />
         <input
@@ -81,8 +86,15 @@ const RegisterPage = () => {
           placeholder="비밀번호"
           // onChange={checkPasswordMatch}
           required
+          className={InputStyles}
         />
-        <Button type="submit">회원가입</Button>
+        <Button
+          type="submit"
+          hasBorder
+          className="border-blue-400 bg-blue-300 text-black"
+        >
+          회원가입
+        </Button>
       </form>
     </div>
   );

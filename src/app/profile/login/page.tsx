@@ -5,7 +5,7 @@ import { useLoginStore } from "@/lib/stores";
 import { hashSHA256 } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
-const InputStyles = "";
+const InputStyles = "rounded-lg border-2 border-gray-300 px-2 text-gray-800";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -24,10 +24,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex size-fit flex-col gap-4">
+    <div className="flex size-fit flex-col items-center gap-4 border-2 border-white bg-lime-100/80 p-12">
+      <h1 className="text-3xl font-bold underline">Login</h1>
       <form
         onSubmit={(e) => onLoginSubmit(e)}
-        className="flex flex-col gap-2 rounded-lg border-8 border-gray-100 bg-white p-8"
+        className="flex flex-col gap-2 border-8 border-gray-100 bg-white p-8"
       >
         <input
           id="userId"
@@ -35,7 +36,7 @@ const LoginPage = () => {
           type="text"
           placeholder="아이디"
           required
-          className="rounded-lg border-2 border-gray-300 px-2"
+          className={InputStyles}
         />
         <input
           id="userPwd"
@@ -43,7 +44,7 @@ const LoginPage = () => {
           type="password"
           placeholder="비밀번호"
           required
-          className="rounded-lg border-2 border-gray-300 px-2"
+          className={InputStyles}
         />
         {loginFailed && (
           <div className="text-red-500">
