@@ -1,30 +1,29 @@
 "use client";
 
-import GameManager from "@/components/game/game-manager";
-import { useRouter } from "next/navigation";
-import { useLayoutEffect, useState } from "react";
+import Game from "@/components/game/Game";
+import { GameState } from "@/components/game/Game.enums";
+import GameMenu from "@/components/game/Menu";
+import { useGameStore } from "@/lib/stores";
 
-export default function GamePage() {
-  const router = useRouter();
-  const [userId, setUserId] = useState<string | null>(null);
-
-  useLayoutEffect(() => {
-    const id = localStorage.getItem("userID");
-    if (!id) {
-      router.push("/login");
-    }
-    setUserId(id);
-  }, []);
+const GamePage = () => {
+  const gameState = useGameStore((state) => state.gameState);
+  console.log(gameState); //! TEMP: Log Game State
 
   return (
-    <>
-      {userId && (
-        <main className="h-full">
-          <div className="mx-auto flex h-full max-w-6xl flex-col items-center justify-center border-2 border-pink-500">
-            <GameManager />
-          </div>
-        </main>
-      )}
-    </>
+    <div>
+      <div>
+        <h1>Game</h1>
+        {/* 설정 메뉴 : GameState.Menu */}
+        {gameState === GameState.Menu ? <GameMenu /> : <></>}
+
+        {/* 게임 플레이 : GameState.Playing */}
+        {gameState === GameState.Playing ? <Game /> : <></>}
+
+        {/* 게임 종료 : GameState.Finished */}
+        {gameState === GameState.Finished ? <div>Game Finished</div> : <></>}
+      </div>
+    </div>
   );
-}
+};
+
+export default GamePage;

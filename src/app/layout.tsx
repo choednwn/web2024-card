@@ -1,4 +1,4 @@
-import Header from "@/components/header";
+import Header from "@/components/Header";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -7,17 +7,21 @@ export const metadata: Metadata = {
   description: "기초웹프로그래밍 팀 프로젝트",
 };
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
   return (
     <html lang="en">
       <body className="flex h-screen flex-col">
         <Header />
-        <div className="h-full">{children}</div>
+        <main className="flex size-full max-w-6xl flex-col items-center justify-center bg-blue-50">
+          {children}
+        </main>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

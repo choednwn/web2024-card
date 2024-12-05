@@ -1,62 +1,44 @@
 "use client";
+import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-export default function Header() {
+const Header = () => {
+  //! Temp for userId. Will be replaced
+  const [userId, _] = useState<string | null>(
+    typeof window !== "undefined" ? localStorage.getItem("userID") : null,
+  );
+
   const router = useRouter();
-  const userId =
-    typeof window !== "undefined" ? localStorage.getItem("userID") : null;
 
   return (
-    <header className="backdrop:bg-background/60 h-fit w-full border-b">
-      <div className="mx-auto flex h-14 max-w-6xl flex-row items-center justify-between">
-        <button
-          onClick={() => {
-            router.push("/");
-          }}
+    <header className="h-16 w-full max-w-6xl border border-black bg-blue-300/80 backdrop-blur-lg">
+      <div className="flex size-full flex-row items-center justify-between">
+        {/* Logo */}
+        <Button
+          id="logo"
+          onClick={() => router.push("/")}
+          className="font-bold"
         >
-          <div id="logo" className="size-fit border-2 border-red-500 font-bold">
-            LOGO
-          </div>
-        </button>
+          LOGO
+        </Button>
 
-        {/*//!move out to separate component.. please */}
-        {/* 임시야 */}
-        <div id="buttons" className="size-fit">
+        {/* Button Container */}
+        <div className="flex size-fit flex-row items-center justify-end gap-4">
           {userId ? (
-            <div className="flex size-fit gap-4">
-              <button
-                className="border-2 border-red-500"
-                onClick={() => {
-                  localStorage.removeItem("userID");
-                  window.location.reload();
-                }}
-              >
-                LOGOUT
-              </button>
-            </div>
+            <>
+              <Button>로그아웃</Button>
+            </>
           ) : (
-            <div className="flex size-fit gap-4">
-              <button
-                className="border-2 border-red-500"
-                onClick={() => {
-                  router.push("/login");
-                }}
-              >
-                LOGIN
-              </button>
-              <button
-                className="border-2 border-red-500"
-                onClick={() => {
-                  router.push("/register");
-                }}
-              >
-                REGISTER
-              </button>
-            </div>
+            <>
+              <Button onClick={() => router.push("/login")}>로그인</Button>
+              <Button onClick={() => router.push("/register")}>회원가입</Button>
+            </>
           )}
         </div>
       </div>
     </header>
   );
-}
+};
+
+export default Header;

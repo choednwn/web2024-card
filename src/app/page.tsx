@@ -1,22 +1,27 @@
 "use client";
+import Button from "@/components/Button";
+import Header from "@/components/Header";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+const styles = {
+  main: "size-full flex flex-col justify-center items-center max-w-6xl",
+};
+
+const HomePage = () => {
   const router = useRouter();
 
   return (
-    <main className="h-full">
-      <div className="mx-auto flex h-full max-w-6xl flex-col items-center justify-center gap-6 border-2 border-pink-500">
-        <h1>Home Page</h1>
-        <button
-          className="border-2 border-red-500 p-6"
-          onClick={() => {
-            router.push("/game");
-          }}
-        >
-          START
-        </button>
-      </div>
-    </main>
+    <>
+      <h1>Home Page</h1>
+      <Button
+        onClick={() => {
+          router.push("/game");
+        }}
+      >
+        Play Game
+      </Button>
+    </>
   );
-}
+};
+
+export default HomePage;
