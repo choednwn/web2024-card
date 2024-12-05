@@ -12,7 +12,7 @@
   - [x] Play Button
 
 - [ ] Profile 
-  - [ ] Profile page
+  - [x] Profile outline (Now needs to grab data)
   - [ ] Show user info
 
 - [ ] Login / Register

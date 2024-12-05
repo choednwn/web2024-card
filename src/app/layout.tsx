@@ -1,5 +1,5 @@
 import Header from "@/components/header";
-import AuthValidator from "@/components/login/validator";
+import AuthValidator from "@/components/validator";
 import SunRay from "@/components/sunray";
 import type { Metadata } from "next";
 import "./globals.css";

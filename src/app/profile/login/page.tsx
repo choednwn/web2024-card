@@ -4,6 +4,7 @@ import Button from "@/components/button";
 import { useLoginStore } from "@/lib/stores";
 import { hashSHA256 } from "@/lib/utils";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const InputStyles = "rounded-lg border-2 border-gray-300 px-2 text-gray-800";
 
@@ -11,6 +12,7 @@ const LoginPage = () => {
   const router = useRouter();
   const login = useLoginStore((state) => state.login);
   const loginFailed = useLoginStore((state) => state.loginFailed);
+  const isAuthenticated = useLoginStore((state) => state.isAuthenticated);
 
   const onLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,6 +24,12 @@ const LoginPage = () => {
     const pwdHash = await hashSHA256(form.userPwd.value);
     login(userId, pwdHash);
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated]);
 
   return (
     <div className="flex size-fit flex-col items-center gap-4 border-2 border-white bg-lime-100/80 p-12">

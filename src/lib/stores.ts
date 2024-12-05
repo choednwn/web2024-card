@@ -11,6 +11,8 @@ import { create } from "zustand";
  */
 export const useLoginStore = create<LoginStore>((set) => ({
   userId: null,
+  gamesPlayed: 0,
+  highScore: 0,
   sessionHash: null,
   isAuthenticated: false,
   loginFailed: false,
@@ -21,6 +23,7 @@ export const useLoginStore = create<LoginStore>((set) => ({
       if (localUserId && localSessionHash) {
         authLocalSession(localUserId, localSessionHash)
           .then((res) => {
+            //! Add getting gamesPlayed and highScore
             if (res) set({ isAuthenticated: true });
           })
           .catch((e) => {
@@ -36,6 +39,7 @@ export const useLoginStore = create<LoginStore>((set) => ({
     set({ loginFailed: false });
     authLogin(userId, pwdHash)
       .then((sessionHash) => {
+        //! Add getting gamesPlayed and highScore
         set({ userId, sessionHash, isAuthenticated: true });
         if (typeof window !== "undefined") {
           localStorage.setItem("userId", userId);

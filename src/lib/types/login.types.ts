@@ -1,5 +1,7 @@
 export type LoginStore = {
   userId: string | null;
+  gamesPlayed: number;
+  highScore: number;
   sessionHash: string | null;
   isAuthenticated: boolean;
   loginFailed: boolean;
