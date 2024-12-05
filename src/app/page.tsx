@@ -11,7 +11,7 @@ const HomePage = () => {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-24">
+    <div className="flex flex-col items-center justify-center gap-16">
       {/* Title */}
       <h1 className="rounded-lg border-4 border-white/75 px-24 py-2 text-4xl font-bold">
         Matching Game
