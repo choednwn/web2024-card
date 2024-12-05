@@ -1,4 +1,5 @@
 import Header from "@/components/header";
+import AuthValidator from "@/components/login/validator";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -14,10 +15,11 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <body className="flex h-screen flex-col">
+      <body className="flex h-screen w-screen flex-col">
+        <AuthValidator />
         <Header />
-        <main className="flex size-full max-w-6xl flex-col items-center justify-center bg-blue-50">
-          {children}
+        <main className="flex size-full flex-col items-center justify-center bg-blue-50">
+          <div className="max-w-6xl">{children}</div>
         </main>
       </body>
     </html>

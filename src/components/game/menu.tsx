@@ -1,6 +1,6 @@
 import Button from "@/components/button";
-import { GameState } from "@/components/game/game.enums";
 import { useGameStore } from "@/lib/stores";
+import { GameState } from "@/lib/types/game.enums";
 
 const GameMenu = () => {
   const setGameState = useGameStore((state) => state.setGameState);

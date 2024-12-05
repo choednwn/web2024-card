@@ -1,29 +1,14 @@
-"use client";
+import GameWrapper from "@/components/game/wrapper";
+import { Metadata } from "next";
 
-import Game from "@/components/game/game";
-import { GameState } from "@/components/game/game.enums";
-import GameMenu from "@/components/game/menu";
-import { useGameStore } from "@/lib/stores";
+export const metadata: Metadata = {
+  title: "게임",
+  description: "게임 페이지",
+};
 
 const GamePage = () => {
-  const gameState = useGameStore((state) => state.gameState);
-  console.log(gameState); //! TEMP: Log Game State
-
-  return (
-    <div>
-      <div>
-        <h1>Game</h1>
-        {/* 설정 메뉴 : GameState.Menu */}
-        {gameState === GameState.Menu ? <GameMenu /> : <></>}
-
-        {/* 게임 플레이 : GameState.Playing */}
-        {gameState === GameState.Playing ? <Game /> : <></>}
-
-        {/* 게임 종료 : GameState.Finished */}
-        {gameState === GameState.Finished ? <div>Game Finished</div> : <></>}
-      </div>
-    </div>
-  );
+  // Wrapper for client as metadata needs to be in a server comp.
+  return <GameWrapper />;
 };
 
 export default GamePage;
