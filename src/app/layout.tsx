@@ -18,7 +18,10 @@ const RootLayout = ({
       <body className="flex h-screen w-screen flex-col">
         <AuthValidator />
         <Header />
-        <main className="flex size-full flex-col items-center justify-center bg-blue-50">
+
+        {/* Add background sun ray here*/}
+
+        <main className="flex size-full flex-col items-center justify-center bg-background">
           <div className="max-w-6xl">{children}</div>
         </main>
       </body>

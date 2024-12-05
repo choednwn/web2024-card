@@ -1,4 +1,4 @@
-import ProfileWrapper from "@/components/login/wrapper";
+import ProfileWrapper from "@/app/profile/wrapper";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

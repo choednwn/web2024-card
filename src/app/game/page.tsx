@@ -1,4 +1,4 @@
-import GameWrapper from "@/components/game/wrapper";
+import GameWrapper from "@/app/game/wrapper";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

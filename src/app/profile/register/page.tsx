@@ -6,7 +6,7 @@ import { useLoginStore } from "@/lib/stores";
 import { hashSHA256 } from "@/lib/utils";
 import { useState } from "react";
 
-const RegisterMenu = () => {
+const RegisterPage = () => {
   const register = useLoginStore((state) => state.register);
   const [isPwdValid, setPwdValid] = useState(true);
 
@@ -88,4 +88,4 @@ const RegisterMenu = () => {
   );
 };
 
-export default RegisterMenu;
+export default RegisterPage;

@@ -13,14 +13,9 @@ const ProfileWrapper = () => {
     if (!isAuthenticated) {
       router.push("/profile/login");
     }
-  });
+  }, []);
 
-  return (
-    <div>
-      {/* 프로필 */}
-      {isAuthenticated && <ProfileMenu />}
-    </div>
-  );
+  return <>{isAuthenticated && <ProfileMenu />}</>;
 };
 
 export default ProfileWrapper;

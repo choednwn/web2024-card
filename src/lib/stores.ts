@@ -30,7 +30,7 @@ export const useLoginStore = create<LoginStore>((set) => ({
     }
   },
   register: async (userId: string, pwdHash: string) => {
-    
+    //! urgh
   },
   login: async (userId: string, pwdHash: string) => {
     set({ loginFailed: false });
