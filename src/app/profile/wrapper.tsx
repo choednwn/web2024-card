@@ -1,7 +1,7 @@
 "use client";
 
 import ProfileMenu from "@/components/profile/profile";
-import { useLoginStore } from "@/lib/stores";
+import { useLoginStore } from "@/lib/login/login.stores";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 

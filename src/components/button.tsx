@@ -2,11 +2,13 @@
 import { cn } from "@/lib/utils";
 
 type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
-  hasBorder?: boolean;
+  outline?: boolean;
+  circle?: boolean;
 };
 
 export default function Button({
-  hasBorder,
+  outline,
+  circle,
   className,
   children,
   ...props
@@ -14,8 +16,9 @@ export default function Button({
   return (
     <button
       className={cn(
-        "h-fit",
-        hasBorder && "rounded-md border-2 border-white px-2",
+        "h-fit rounded-md",
+        outline && "border-2 border-white px-2",
+        circle && "rounded-full",
         className,
       )}
       {...props}

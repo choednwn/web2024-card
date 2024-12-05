@@ -1,6 +1,6 @@
 "use client";
 
-import { useLoginStore } from "@/lib/stores";
+import { useLoginStore } from "@/lib/login/login.stores";
 import { useEffect } from "react";
 
 const AuthValidator = () => {
@@ -9,7 +9,6 @@ const AuthValidator = () => {
 
   useEffect(() => {
     validateLocalAuth();
-    console.log("ran auth");
   }, []);
 
   return <div id="auth-validator"></div>;

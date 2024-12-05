@@ -3,15 +3,15 @@
 import Game from "@/components/game/game";
 import GameMenu from "@/components/game/menu";
 import GameScoreboard from "@/components/game/scoreboard";
-import { useGameStore } from "@/lib/stores";
-import { GameState } from "@/lib/types/game.enums";
+import { GameState } from "@/lib/game/game.enums";
+import { useGameStore } from "@/lib/game/game.store";
+import { useEffect } from "react";
 
 const GameWrapper = () => {
   const gameState = useGameStore((state) => state.gameState);
 
   return (
     <div>
-      <h1>Game</h1>
       {/* 설정 메뉴 : GameState.Menu */}
       {gameState === GameState.Menu ? <GameMenu /> : <></>}
 

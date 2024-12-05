@@ -2,7 +2,7 @@
 
 import Button from "@/components/button";
 import { RegisterSettings } from "@/lib/constants";
-import { useLoginStore } from "@/lib/stores";
+import { useLoginStore } from "@/lib/login/login.stores";
 import { cn, hashSHA256 } from "@/lib/utils";
 import { useState } from "react";
 
@@ -27,7 +27,6 @@ const RegisterPage = () => {
     e.preventDefault();
     const pwd = e.currentTarget.value;
     const pwdRgx = /^(?=\S*[a-zA-Z])(?=\S*\d)(?=\S*[\W_])\S+$/g;
-    console.log(pwd);
 
     if (pwd.length === 0) {
       setPwdValid(true);
@@ -90,7 +89,6 @@ const RegisterPage = () => {
         />
         <Button
           type="submit"
-          hasBorder
           className="border-blue-400 bg-blue-300 text-black"
         >
           회원가입

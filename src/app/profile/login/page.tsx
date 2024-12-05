@@ -1,7 +1,7 @@
 "use client";
 
 import Button from "@/components/button";
-import { useLoginStore } from "@/lib/stores";
+import { useLoginStore } from "@/lib/login/login.stores";
 import { hashSHA256 } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -61,7 +61,6 @@ const LoginPage = () => {
         )}
         <Button
           type="submit"
-          hasBorder
           className="border-blue-400 bg-blue-300 text-black"
         >
           로그인
@@ -69,7 +68,6 @@ const LoginPage = () => {
       </form>
       <Button
         onClick={() => router.push("/profile/register")}
-        hasBorder
         className="w-full bg-blue-400 text-black"
       >
         회원가입

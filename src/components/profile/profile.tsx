@@ -1,11 +1,12 @@
 "use client";
 
-import { useLoginStore } from "@/lib/stores";
+import { useGameStore } from "@/lib/game/game.store";
+import { useLoginStore } from "@/lib/login/login.stores";
 
 const ProfileMenu = () => {
   const userId = useLoginStore((state) => state.userId);
-  const highScore = useLoginStore((state) => state.highScore);
-  const gamesPlayed = useLoginStore((state) => state.gamesPlayed);
+  const highScore = useGameStore((state) => state.highScore);
+  const gamesPlayed = useGameStore((state) => state.gamesPlayed);
 
   return (
     <div className="flex size-fit flex-col items-center gap-4 rounded-lg border-2 border-white bg-sky-200/20 p-12 backdrop-blur-md">
@@ -13,9 +14,11 @@ const ProfileMenu = () => {
       <div className="flex flex-row items-center justify-center gap-16">
         <div className="h-24 w-24 rounded-full bg-black"></div>
         <ul className="flex flex-col items-center justify-start">
-          <li className="text-lg font-semibold">Name: {userId} </li>
-          <li className="text-lg font-semibold">High Score: </li>
-          <li className="text-lg font-semibold">Games Played: </li>
+          <li className="text-lg font-semibold">
+            Name: {userId ? userId.toString() : ""}{" "}
+          </li>
+          <li className="text-lg font-semibold">High Score: {highScore}</li>
+          <li className="text-lg font-semibold">Games Played: {gamesPlayed}</li>
         </ul>
       </div>
     </div>
