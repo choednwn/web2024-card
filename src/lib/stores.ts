@@ -1,5 +1,5 @@
-import { GameState } from "@/components/game/Game.enums";
-import { GameStore } from "@/components/game/Game.types";
+import { GameState } from "@/components/game/game.enums";
+import { GameStore } from "@/components/game/game.types";
 import { create } from "zustand";
 
 /**

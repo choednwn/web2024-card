@@ -1,8 +1,8 @@
 "use client";
 
-import Game from "@/components/game/Game";
-import { GameState } from "@/components/game/Game.enums";
-import GameMenu from "@/components/game/Menu";
+import Game from "@/components/game/game";
+import { GameState } from "@/components/game/game.enums";
+import GameMenu from "@/components/game/menu";
 import { useGameStore } from "@/lib/stores";
 
 const GamePage = () => {

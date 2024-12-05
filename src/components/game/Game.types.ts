@@ -1,4 +1,4 @@
-import { GameState } from "@/components/game/Game.enums";
+import { GameState } from "@/components/game/game.enums";
 
 export type GameStore = {
   gameState: GameState;

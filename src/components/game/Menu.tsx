@@ -1,5 +1,5 @@
-import Button from "@/components/Button";
-import { GameState } from "@/components/game/Game.enums";
+import Button from "@/components/button";
+import { GameState } from "@/components/game/game.enums";
 import { useGameStore } from "@/lib/stores";
 
 const GameMenu = () => {
