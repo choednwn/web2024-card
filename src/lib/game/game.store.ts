@@ -6,7 +6,7 @@ import { create } from "zustand";
 /**
  * Game Stores - 게임 저장 데이터
  */
-export const useGameStore = create<GameStore>((set) => ({
+export const useGameStore = create<GameStore>((set, get) => ({
   gameState: GameState.Menu,
   cardAmount: CardAmount.Default,
   score: 0,
@@ -27,31 +27,14 @@ export const useGameStore = create<GameStore>((set) => ({
     col: number,
     row: number,
     data: { flipped?: boolean; matched?: boolean },
-    cards: CardData[][],
   ) => {
-    const newCards = [...cards];
+    const newCards = [...get().cards];
     newCards[col][row] = { ...newCards[col][row], ...data };
     set({ cards: newCards });
   },
-  addToFlipped: (
-    col: number,
-    row: number,
-    imageId: number,
-    flipped: FlippedData[],
-  ) => {
-    const newFlipped = [...flipped];
-    newFlipped.push({ col, row, imageId });
-    set({ flipped: newFlipped });
-  },
+  addToFlipped: (col: number, row: number, imageId: number) =>
+    set({ flipped: [...get().flipped, { col, row, imageId }] }),
   clearFlipped: () => set({ flipped: [] }),
-  resetGame: () =>
-    set({
-      gameState: GameState.Menu,
-      cardAmount: CardAmount.Default,
-      score: 0,
-      gamesPlayed: 0,
-      matched: 0,
-      cards: [],
-      flipped: [],
-    }),
 }));
+// 거의 새벽 4시.. 아 진짜ㅣㅈ아ㅣㅁㅇ..ㅇ 왜 안되는겨.. 자고싶다
+// !todo: 게임. 리셋. 기능. 다시. 시도.

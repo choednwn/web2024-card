@@ -10,6 +10,8 @@ import { clearCards, setCardArray } from "@/lib/game/game.utils";
 import { cn } from "@/lib/utils";
 import { useEffect } from "react";
 
+//! IDEA: 점수에 타이머 추가?
+
 const Game = () => {
   const cardAmount = useGameStore((state) => state.cardAmount);
   const score = useGameStore((state) => state.score);
@@ -25,7 +27,6 @@ const Game = () => {
   const updateCard = useGameStore((state) => state.updateCard);
   const addToFlipped = useGameStore((state) => state.addToFlipped);
   const clearFlipped = useGameStore((state) => state.clearFlipped);
-  const resetGame = useGameStore((state) => state.resetGame);
 
   // Create cards
   useEffect(() => {
@@ -43,8 +44,8 @@ const Game = () => {
         // Matched
         // Update score
         setScore(score + ScoreOnMatch);
-        updateCard(flipped[0].col, flipped[0].row, { matched: true }, cards);
-        updateCard(flipped[1].col, flipped[1].row, { matched: true }, cards);
+        updateCard(flipped[0].col, flipped[0].row, { matched: true });
+        updateCard(flipped[1].col, flipped[1].row, { matched: true });
         setMatched(matched + 2);
       } else {
         // Not Matched
@@ -55,8 +56,8 @@ const Game = () => {
           setScore(score + ScoreOnMismatch);
         }
         setTimeout(() => {
-          updateCard(flipped[0].col, flipped[0].row, { flipped: false }, cards);
-          updateCard(flipped[1].col, flipped[1].row, { flipped: false }, cards);
+          updateCard(flipped[0].col, flipped[0].row, { flipped: false });
+          updateCard(flipped[1].col, flipped[1].row, { flipped: false });
         }, CardFlipShowTime);
       }
       clearFlipped();
@@ -87,8 +88,14 @@ const Game = () => {
                 key={card.id}
                 onClick={() => {
                   if (!cards[i][j].matched) {
-                    updateCard(i, j, { flipped: !card.flipped }, cards);
-                    addToFlipped(i, j, card.imageId, flipped);
+                    if (
+                      flipped.length === 0 ||
+                      (flipped.length === 1 &&
+                        !(flipped[0].col === i && flipped[0].row === j))
+                    ) {
+                      addToFlipped(i, j, card.imageId);
+                      updateCard(i, j, { flipped: true });
+                    }
                   }
                 }}
                 className={cn(
@@ -108,7 +115,6 @@ const Game = () => {
       <Button
         outline
         onClick={() => {
-          resetGame();
           setGameState(GameState.Menu);
         }}
       >

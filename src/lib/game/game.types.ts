@@ -22,16 +22,9 @@ export type GameStore = {
     col: number,
     row: number,
     data: { flipped?: boolean; matched?: boolean },
-    cards: CardData[][],
   ) => void;
-  addToFlipped: (
-    col: number,
-    row: number,
-    imageId: number,
-    flipped: FlippedData[],
-  ) => void;
+  addToFlipped: (col: number, row: number, imageId: number) => void;
   clearFlipped: () => void;
-  resetGame: () => void;
 };
 
 export type CardData = {
