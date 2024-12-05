@@ -1,7 +1,8 @@
 "use client";
+
 import Button from "@/components/Button";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 const Header = () => {
   //! Temp for userId. Will be replaced
