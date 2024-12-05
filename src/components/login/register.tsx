@@ -39,17 +39,17 @@ const RegisterMenu = () => {
     }
   };
 
-  const checkPasswordMatch = (e: React.FormEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const pwd = document.getElementById("userPwd")?.value; //! needs a better way I think
-    const checkPwd = e.currentTarget.value;
+  // const checkPasswordMatch = (e: React.FormEvent<HTMLInputElement>) => {
+  //   e.preventDefault();
+  //   const pwd = document.getElementById("userPwd")?.value; //! needs a better way I think
+  //   const checkPwd = e.currentTarget.value;
 
-    if (pwd === checkPwd) {
-      e.currentTarget.setCustomValidity("");
-    } else {
-      e.currentTarget.setCustomValidity("비밀번호가 일치하지 않습니다.");
-    }
-  };
+  //   if (pwd === checkPwd) {
+  //     e.currentTarget.setCustomValidity("");
+  //   } else {
+  //     e.currentTarget.setCustomValidity("비밀번호가 일치하지 않습니다.");
+  //   }
+  // };
 
   return (
     <div className="size-fit border border-black">
@@ -79,7 +79,7 @@ const RegisterMenu = () => {
           id="checkUserPwd"
           type="password"
           placeholder="비밀번호"
-          onChange={checkPasswordMatch}
+          // onChange={checkPasswordMatch}
           required
         />
         <Button type="submit">회원가입</Button>
