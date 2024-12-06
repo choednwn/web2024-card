@@ -34,7 +34,13 @@ const Header = () => {
               >
                 Profile
               </Button>
-              <Button onClick={() => logout()} className={HeaderButtonStyles}>
+              <Button
+                onClick={() => {
+                  logout();
+                  router.push("/");
+                }}
+                className={HeaderButtonStyles}
+              >
                 Logout
               </Button>
             </>
