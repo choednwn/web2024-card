@@ -2,6 +2,7 @@
 
 import Button from "@/components/button";
 import { useGameStore } from "@/lib/game/game.store";
+import { useLoginStore } from "@/lib/login/login.stores";
 import { useRouter } from "next/navigation";
 
 const styles = {
@@ -10,6 +11,7 @@ const styles = {
 
 const HomePage = () => {
   const router = useRouter();
+  const isAuthenticated = useLoginStore((state) => state.isAuthenticated);
   const resetGame = useGameStore((state) => state.resetGame);
 
   return (
@@ -22,8 +24,12 @@ const HomePage = () => {
       {/* Game Start Button */}
       <Button
         onClick={() => {
-          router.push("/game");
-          resetGame();
+          if (!isAuthenticated) {
+            router.push("profile/login");
+          } else {
+            router.push("/game");
+            resetGame();
+          }
         }}
         className="w-fit rounded-lg bg-sky-100/60 px-24 py-4 text-2xl font-bold transition-colors duration-300 hover:bg-sky-400"
       >

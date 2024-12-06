@@ -1,6 +1,5 @@
 import { CardAmount, CardLayoutSize, Images } from "@/lib/constants";
-import { GameState } from "@/lib/game/game.enums";
-import { CardData, GameStore } from "@/lib/game/game.types";
+import { CardData } from "@/lib/game/game.types";
 
 export const shuffleCards = (cardAmount: number) => {
   const uniqueIds = new Set();

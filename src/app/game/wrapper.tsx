@@ -5,7 +5,6 @@ import GameMenu from "@/components/game/menu";
 import GameScoreboard from "@/components/game/scoreboard";
 import { GameState } from "@/lib/game/game.enums";
 import { useGameStore } from "@/lib/game/game.store";
-import { useEffect } from "react";
 
 const GameWrapper = () => {
   const gameState = useGameStore((state) => state.gameState);

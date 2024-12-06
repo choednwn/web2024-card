@@ -1,6 +1,6 @@
 import { CardAmount } from "@/lib/constants";
 import { GameState } from "@/lib/game/game.enums";
-import { CardData, FlippedData, GameStore } from "@/lib/game/game.types";
+import { CardData, GameStore } from "@/lib/game/game.types";
 import { create } from "zustand";
 
 const initialState = {

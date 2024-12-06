@@ -3,7 +3,7 @@
 import Button from "@/components/button";
 import { useLoginStore } from "@/lib/login/login.stores";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React from "react";
 
 const HeaderButtonStyles = "text-lg font-bold";
 
@@ -13,7 +13,7 @@ const Header = () => {
   const logout = useLoginStore((state) => state.logout);
 
   return (
-    <header className="6xl:px-0 z-50 flex h-16 w-full flex-row items-center justify-center bg-black/10 px-4 shadow-md backdrop-blur-xl">
+    <header className="z-50 flex h-16 w-full flex-row items-center justify-center bg-black/10 px-4 shadow-md backdrop-blur-xl 6xl:px-0">
       <div className="flex size-full max-w-6xl flex-row items-center justify-between">
         {/* Logo */}
         <Button

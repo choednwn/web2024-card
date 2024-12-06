@@ -1,9 +1,11 @@
+"use client";
+
 import Button from "@/components/button";
 import { CardAmount } from "@/lib/constants";
 import { GameState } from "@/lib/game/game.enums";
 import { useGameStore } from "@/lib/game/game.store";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 const GameMenu = () => {
   const cardAmount = useGameStore((state) => state.cardAmount);
