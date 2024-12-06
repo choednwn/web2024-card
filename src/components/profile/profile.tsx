@@ -14,9 +14,7 @@ const ProfileMenu = () => {
       <div className="flex flex-row items-center justify-center gap-16">
         <div className="h-24 w-24 rounded-full bg-black"></div>
         <ul className="flex flex-col items-center justify-start">
-          <li className="text-lg font-semibold">
-            Name: {userId ? userId.toString() : ""}{" "}
-          </li>
+          <li className="text-lg font-semibold">Name: {userId}</li>
           <li className="text-lg font-semibold">High Score: {highScore}</li>
           <li className="text-lg font-semibold">Games Played: {gamesPlayed}</li>
         </ul>

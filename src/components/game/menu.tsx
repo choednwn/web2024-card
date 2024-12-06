@@ -6,14 +6,9 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { useEffect } from "react";
 
 const GameMenu = () => {
-  const gameStore = useGameStore();
   const cardAmount = useGameStore((state) => state.cardAmount);
   const setGameState = useGameStore((state) => state.setGameState);
   const setCardAmount = useGameStore((state) => state.setCardAmount);
-
-  useEffect(() => {
-    console.log(gameStore);
-  });
 
   const increaseCardAmount = () => {
     if (cardAmount < CardAmount.Max) {

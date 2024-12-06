@@ -19,7 +19,6 @@ const Game = () => {
   const matched = useGameStore((state) => state.matched);
   const cards = useGameStore((state) => state.cards);
   const flipped = useGameStore((state) => state.flipped);
-
   const setGameState = useGameStore((state) => state.setGameState);
   const setScore = useGameStore((state) => state.setScore);
   const setMatched = useGameStore((state) => state.setMatched);
@@ -27,6 +26,7 @@ const Game = () => {
   const updateCard = useGameStore((state) => state.updateCard);
   const addToFlipped = useGameStore((state) => state.addToFlipped);
   const clearFlipped = useGameStore((state) => state.clearFlipped);
+  const resetGame = useGameStore((state) => state.resetGame);
 
   // Create cards
   useEffect(() => {
@@ -115,7 +115,8 @@ const Game = () => {
       <Button
         outline
         onClick={() => {
-          setGameState(GameState.Menu);
+          // setGameState(GameState.Menu);
+          resetGame();
         }}
       >
         Start Over

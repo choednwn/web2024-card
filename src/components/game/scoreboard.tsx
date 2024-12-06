@@ -1,5 +1,4 @@
 import Button from "@/components/button";
-import { GameState } from "@/lib/game/game.enums";
 import { useGameStore } from "@/lib/game/game.store";
 import { useEffect } from "react";
 
@@ -7,16 +6,16 @@ const GameScoreboard = () => {
   const score = useGameStore((state) => state.score);
   const highScore = useGameStore((state) => state.highScore);
   const gamesPlayed = useGameStore((state) => state.gamesPlayed);
-  const setGameState = useGameStore((state) => state.setGameState);
   const setHighScore = useGameStore((state) => state.setHighScore);
   const setGamesPlayed = useGameStore((state) => state.setGamesPlayed);
+  const resetGame = useGameStore((state) => state.resetGame);
 
   // Set new high score
   useEffect(() => {
     if (score > highScore) {
       setHighScore(score);
-      setGamesPlayed(gamesPlayed + 1);
     }
+    setGamesPlayed(gamesPlayed + 1);
   }, []);
 
   return (
@@ -44,11 +43,7 @@ const GameScoreboard = () => {
         </div>
 
         {/* Play Again */}
-        <Button
-          outline
-          onClick={() => setGameState(GameState.Menu)}
-          className="w-full"
-        >
+        <Button outline onClick={() => resetGame()} className="w-full">
           Play Again
         </Button>
       </div>

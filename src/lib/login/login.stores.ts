@@ -23,7 +23,12 @@ export const useLoginStore = create<LoginStore>((set) => ({
         authLocalSession(localUserId, localSessionHash)
           .then((res) => {
             //! Add getting gamesPlayed and highScore
-            if (res) set({ isAuthenticated: true });
+            if (res)
+              set({
+                userId: localUserId,
+                sessionHash: localSessionHash,
+                isAuthenticated: true,
+              });
           })
           .catch((e) => {
             console.log(e);

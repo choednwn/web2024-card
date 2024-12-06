@@ -25,6 +25,7 @@ export type GameStore = {
   ) => void;
   addToFlipped: (col: number, row: number, imageId: number) => void;
   clearFlipped: () => void;
+  resetGame: () => void;
 };
 
 export type CardData = {

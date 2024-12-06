@@ -5,7 +5,6 @@ import { useEffect } from "react";
 
 const AuthValidator = () => {
   const validateLocalAuth = useLoginStore((state) => state.validateLocalAuth);
-  const isAuthenticated = useLoginStore((state) => state.isAuthenticated);
 
   useEffect(() => {
     validateLocalAuth();
