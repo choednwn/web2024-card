@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/button";
+import Button from "@/components/Button";
 import { RegisterSettings } from "@/lib/constants";
 import { useLoginStore } from "@/lib/login/login.stores";
 import { cn, hashSHA256 } from "@/lib/utils";

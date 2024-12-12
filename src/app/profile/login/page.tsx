@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/button";
+import Button from "@/components/Button";
 import { useLoginStore } from "@/lib/login/login.stores";
 import { hashSHA256 } from "@/lib/utils";
 import { useRouter } from "next/navigation";
@@ -10,9 +10,9 @@ const InputStyles = "rounded-lg border-2 border-gray-300 px-2 text-gray-800";
 
 const LoginPage = () => {
   const router = useRouter();
-  const login = useLoginStore((state) => state.login);
   const loginFailed = useLoginStore((state) => state.loginFailed);
   const isAuthenticated = useLoginStore((state) => state.isAuthenticated);
+  const login = useLoginStore((state) => state.login);
 
   const onLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

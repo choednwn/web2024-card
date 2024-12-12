@@ -1,12 +1,16 @@
 "use client";
 
-import Button from "@/components/button";
+import Button from "@/components/Button";
 import { CardAmount } from "@/lib/constants";
 import { GameState } from "@/lib/game/game.enums";
 import { useGameStore } from "@/lib/game/game.store";
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
 
+/**
+ * **GameMenu** \
+ * 게임 메뉴 컴포넌트 \
+ * (게임 시작 전)
+ */
 const GameMenu = () => {
   const cardAmount = useGameStore((state) => state.cardAmount);
   const setGameState = useGameStore((state) => state.setGameState);

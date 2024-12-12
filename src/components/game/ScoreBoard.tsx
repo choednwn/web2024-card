@@ -1,7 +1,13 @@
-import Button from "@/components/button";
+import Button from "@/components/Button";
 import { useGameStore } from "@/lib/game/game.store";
 import { useEffect } from "react";
 
+//! DB랑 연결 해야됨
+/**
+ * **GameScoreboard** \
+ * 게임 스코어보드 컴포넌트 \
+ * (게임 끝나고 표시)
+ */
 const GameScoreboard = () => {
   const score = useGameStore((state) => state.score);
   const highScore = useGameStore((state) => state.highScore);

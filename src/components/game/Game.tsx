@@ -1,4 +1,5 @@
-import Button from "@/components/button";
+import Button from "@/components/Button";
+import Card from "@/components/game/Card";
 import {
   CardFlipShowTime,
   ScoreOnMatch,
@@ -47,6 +48,7 @@ const Game = () => {
         updateCard(flipped[0].col, flipped[0].row, { matched: true });
         updateCard(flipped[1].col, flipped[1].row, { matched: true });
         setMatched(matched + 2);
+        clearFlipped();
       } else {
         // Not Matched
         // Update Score
@@ -58,9 +60,9 @@ const Game = () => {
         setTimeout(() => {
           updateCard(flipped[0].col, flipped[0].row, { flipped: false });
           updateCard(flipped[1].col, flipped[1].row, { flipped: false });
+          clearFlipped();
         }, CardFlipShowTime);
       }
-      clearFlipped();
     }
   }, [flipped]);
 
@@ -88,6 +90,12 @@ const Game = () => {
                 key={card.id}
                 onClick={() => {
                   if (!cards[i][j].matched) {
+                    // Locks flipping until flipped cards are hidden
+                    if (flipped.length === 2) {
+                      return;
+                    }
+
+                    // Add to flipped
                     if (
                       flipped.length === 0 ||
                       (flipped.length === 1 &&
@@ -98,14 +106,12 @@ const Game = () => {
                     }
                   }
                 }}
-                className={cn(
-                  "flex h-32 w-32 flex-col items-center justify-center border-2 border-black bg-black/40",
-                  cards[i][j].flipped && "bg-blue-500",
-                  cards[i][j].matched && "bg-green-500",
-                )}
               >
-                <p>{card.id}</p>
-                <p>({cards[i][j].imageId})</p>
+                <Card
+                  img_id={card.imageId}
+                  flipped={cards[i][j].flipped}
+                  className={cn("size-32")}
+                />
               </div>
             ))}
           </div>

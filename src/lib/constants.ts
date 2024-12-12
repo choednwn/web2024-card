@@ -3,23 +3,28 @@ export const RegisterSettings = {
   pwdMinLength: 8,
 } as const;
 
+/**
+ * 게임 점수 설정
+ */
 export const ScoreOnMatch = 10;
 export const ScoreOnMismatch = -5;
 
-//! Convert to image src
-export const Images = [
-  "a",
-  "b",
-  "c",
-  "d",
-  "e",
-  "f",
-  "g",
-  "h",
-  "i",
-  "j",
-  "k",
-  "l",
+/**
+ * 카드 Image Src
+ */
+export const CardImage = [
+  "/characters/1.png",
+  "/characters/2.png",
+  "/characters/3.png",
+  "/characters/4.png",
+  "/characters/5.png",
+  "/characters/6.png",
+  "/characters/7.png",
+  "/characters/8.png",
+  "/characters/9.png",
+  "/characters/10.png",
+  "/characters/11.png",
+  "/characters/12.png",
 ] as const;
 
 /**
@@ -42,4 +47,4 @@ export const CardAmount = {
   Multiplier: 4,
 } as const;
 
-export const CardFlipShowTime = 1000;
+export const CardFlipShowTime = 800;

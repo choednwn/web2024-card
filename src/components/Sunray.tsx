@@ -1,5 +1,11 @@
+import "@/styles/sunray.css";
 import React from "react";
 
+/**
+ * **SunRay** \
+ * Credit: &#64;wheatup \
+ * Source: https://codepen.io/wheatup/pen/abMKaQp
+ */
 const SunRay = () => {
   return (
     <>

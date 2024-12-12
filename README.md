@@ -27,5 +27,8 @@
   - [x] Gameover Menu
   - [x] Scoreboard
   - [ ] Styling (Card flipping, etc)
+    - [x] Card Flipping
+    - [x] Card Images
+    - [ ] Card Details
 
 - [ ] Database

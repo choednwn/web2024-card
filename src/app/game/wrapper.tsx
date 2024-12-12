@@ -1,8 +1,8 @@
 "use client";
 
-import Game from "@/components/game/game";
-import GameMenu from "@/components/game/menu";
-import GameScoreboard from "@/components/game/scoreboard";
+import Game from "@/components/game/Game";
+import GameMenu from "@/components/game/Menu";
+import GameScoreboard from "@/components/game/ScoreBoard";
 import { GameState } from "@/lib/game/game.enums";
 import { useGameStore } from "@/lib/game/game.store";
 

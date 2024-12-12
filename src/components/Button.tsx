@@ -6,6 +6,14 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button"> & {
   circle?: boolean;
 };
 
+//! Need to revamp
+/**
+ * **Button** \
+ * 버튼 컴포넌트
+ *
+ * @param outline
+ * @param circle
+ */
 export default function Button({
   outline,
   circle,

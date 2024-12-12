@@ -1,10 +1,10 @@
-import { CardAmount, CardLayoutSize, Images } from "@/lib/constants";
+import { CardAmount, CardImage, CardLayoutSize } from "@/lib/constants";
 import { CardData } from "@/lib/game/game.types";
 
 export const shuffleCards = (cardAmount: number) => {
   const uniqueIds = new Set();
   while (uniqueIds.size < cardAmount / 2) {
-    uniqueIds.add(Math.floor(Math.random() * Images.length));
+    uniqueIds.add(Math.floor(Math.random() * CardImage.length));
   }
   const imageIds = Array.from(uniqueIds) as number[];
   imageIds.push(...imageIds);

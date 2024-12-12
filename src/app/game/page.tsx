@@ -7,7 +7,6 @@ export const metadata: Metadata = {
 };
 
 const GamePage = () => {
-  // Wrapper for client as metadata needs to be in a server comp.
   return <GameWrapper />;
 };
 

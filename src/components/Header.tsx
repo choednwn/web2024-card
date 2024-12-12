@@ -1,12 +1,16 @@
 "use client";
 
-import Button from "@/components/button";
+import Button from "@/components/Button";
 import { useLoginStore } from "@/lib/login/login.stores";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const HeaderButtonStyles = "text-lg font-bold";
+const HeaderButtonStyles = "text-lg font-bold h-full";
 
+/**
+ * **Header** \
+ * 사이트 상단 Header 컴포넌트 \
+ */
 const Header = () => {
   const router = useRouter();
   const isAuthenticated = useLoginStore((state) => state.isAuthenticated);
@@ -21,7 +25,8 @@ const Header = () => {
           onClick={() => router.push("/")}
           className={HeaderButtonStyles}
         >
-          LOGO
+          web2024-card
+          {/* <Image src={logo_img} alt="logo" class="h-full w-auto" */}
         </Button>
 
         {/* Button Container */}
