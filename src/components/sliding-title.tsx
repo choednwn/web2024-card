@@ -13,7 +13,7 @@ export const SlidingTitle = ({ delay, ...props }: SlidingTitleProps) => {
   return (
     <div
       className={cn(
-        "flex flex-row font-serif text-5xl font-bold sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl",
+        "flex select-none flex-row gap-1 font-serif text-5xl font-bold transition-all duration-500 hover:text-[calc(3rem+12px)] sm:text-6xl sm:hover:text-[calc(3.75rem+12px)] md:text-7xl md:hover:text-[calc(4.5rem+12px)] lg:text-8xl lg:hover:text-[calc(6rem+12px)] xl:text-9xl xl:hover:text-[calc(8rem+12px)]",
         props.className,
       )}
     >

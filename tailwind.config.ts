@@ -10,6 +10,16 @@ export default {
   ],
   theme: {
     extend: {
+      height: {
+        nav: "64px",
+        "screen-sub-nav": "calc(100vh - 64px)",
+      },
+      dropShadow: {
+        pinkglow: [
+          "0 0px 20px rgba(213,134,227,0.35)",
+          "0 0px 65px rgba(213,134,227,0.2)",
+        ],
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

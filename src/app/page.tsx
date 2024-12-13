@@ -1,29 +1,23 @@
 "use client";
 
 import { BoundingContainer } from "@/components/bounding-container";
+import { CMGLogo } from "@/components/logo";
 import { MouseFollower } from "@/components/mouse-follower";
 import { SlidingTitle } from "@/components/sliding-title";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const HomePage = () => {
   const router = useRouter();
 
   return (
-    <div className="flex h-screen w-screen items-center">
+    <div className="flex h-screen items-center">
       <MouseFollower
         followerSize={50}
         onFollowerClick={() => {
-          router.push("/profile");
+          router.push("/dash");
         }}
       >
-        <Image
-          src="/logo.png"
-          width={180}
-          height={160}
-          alt="logo"
-          className="h-full w-full"
-        />
+        <CMGLogo />
       </MouseFollower>
       <BoundingContainer className="flex flex-col gap-4">
         <div className="flex flex-col">

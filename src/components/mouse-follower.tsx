@@ -33,7 +33,7 @@ export const MouseFollower = ({
       onMouseOver={() => setMouseInScreen(true)}
       onMouseLeave={() => setMouseInScreen(false)}
       className={cn(
-        "absolute z-50 h-screen w-screen overflow-hidden opacity-0 transition-opacity duration-500",
+        "absolute h-screen w-screen overflow-hidden opacity-0 transition-opacity duration-500",
         mouseInScreen && "opacity-100",
       )}
     >
@@ -44,7 +44,7 @@ export const MouseFollower = ({
         }}
         onMouseEnter={() => setMouseOverFollower(true)}
         onMouseLeave={() => setMouseOverFollower(false)}
-        className="hover:cursor-pointer"
+        className="select-none hover:cursor-pointer hover:drop-shadow-pinkglow"
         style={{
           width: `${mouesOverFollower ? followerSize + MouseFollowerZoomSize : followerSize}px`,
           height: `${mouesOverFollower ? followerSize + MouseFollowerZoomSize : followerSize}px`,
