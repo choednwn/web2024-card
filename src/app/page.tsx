@@ -14,7 +14,8 @@ const HomePage = () => {
       <MouseFollower
         followerSize={50}
         onFollowerClick={() => {
-          router.push("/dash");
+          // router.push("/dash");
+          router.push("/dbtest"); //db연결 테스트 페이지
         }}
       >
         <CMGLogo />

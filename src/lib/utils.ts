@@ -15,3 +15,9 @@ export const hashSHA256 = async (str: string): Promise<string> => {
     return hashHex;
   });
 };
+
+// 입력값 검증 유틸리티
+export const validateUserId = (userId: string): boolean => /^[a-zA-Z0-9_]{5,20}$/.test(userId);
+export const validatePassword = (password: string): boolean =>
+  /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/.test(password);
+
