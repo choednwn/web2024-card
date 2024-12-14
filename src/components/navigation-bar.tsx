@@ -12,10 +12,11 @@ export const NavigationBar = () => {
       <BoundingContainer className="flex h-full items-center justify-between">
         <CMGLogo
           className="size-10 cursor-pointer drop-shadow-pinkglow"
-          onClick={() => {
-            router.push("/");
-          }}
+          onClick={() => router.push("/")}
         />
+        <button onClick={() => router.push("/login")} className="font-mono">
+          Login
+        </button>
       </BoundingContainer>
     </nav>
   );

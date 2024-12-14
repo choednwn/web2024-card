@@ -124,8 +124,8 @@ const Game = () => {
                     }
                   }
                 }}
-                className="size-24 cursor-pointer duration-300 animate-in fade-in sm:size-32"
-                style={{ animationDelay: `${i * 0.1 + j * 0.1}s` }}
+                className="animate-blink-in size-24 cursor-pointer duration-300 sm:size-32"
+                style={{ animationDelay: `${i * 0.1 + j * 0.1 + 0.1}s` }}
               >
                 <Card {...card} />
               </div>

@@ -67,6 +67,15 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      keyframes: {
+        "blink-in": {
+          from: { backgroundColor: "white", opacity: "0%" },
+          to: { backgroundColor: "transparent", opacity: "100%" },
+        },
+      },
+      animation: {
+        "blink-in": "blink-in 0.3s ease-in-out forwards",
+      },
     },
   },
   plugins: [tailwind_animate],

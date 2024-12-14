@@ -34,9 +34,7 @@ export const GameSettings = ({ className }: { className?: string }) => {
         <div className="flex w-fit flex-col gap-2">
           {/* Game Mode */}
           <ToggleGroup
-            onValueChange={(e: GameMode) => {
-              setGameMode(e);
-            }}
+            onValueChange={(e: GameMode) => setGameMode(e)}
             defaultValue={gameMode}
             type="single"
             variant="outline"
