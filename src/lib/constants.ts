@@ -1,34 +1,16 @@
 /**
  * Game Constants
  */
-export const GameDifficulty = {
+export const Points = {
   Casual: {
-    Easy: {
-      MatchP: 10,
-      MismatchP: -2,
-    },
-    Normal: {
-      MatchP: 10,
-      MismatchP: -5,
-    },
-    Hard: {
-      MatchP: 10,
-      MismatchP: -8,
-    },
+    StartingPoints: 50,
+    Match: 10,
+    Mismatch: -3,
   },
   Hardcore: {
-    Easy: {
-      StartingP: 50,
-      MismatchP: -2,
-    },
-    Normal: {
-      StartingP: 50,
-      MismatchP: -5,
-    },
-    Hard: {
-      MatchP: 50,
-      MismatchP: -8,
-    },
+    Multiplier: 3,
+    PointsPerCard: 5, // 카드 개수 * PointesPerCard => 시작 점수
+    Mismatch: -3,
   },
 } as const;
 

@@ -13,10 +13,7 @@ const HomePage = () => {
     <div className="flex h-screen items-center">
       <MouseFollower
         followerSize={50}
-        onFollowerClick={() => {
-          // router.push("/dash");
-          router.push("/dbtest"); //db연결 테스트 페이지
-        }}
+        onFollowerClick={() => router.push("/dash")}
       >
         <CMGLogo />
       </MouseFollower>

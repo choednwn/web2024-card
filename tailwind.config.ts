@@ -12,7 +12,7 @@ export default {
     extend: {
       height: {
         nav: "64px",
-        "screen-sub-nav": "calc(100vh - 64px)",
+        "screen-sub-nav": "calc(100vh - 80px)",
       },
       dropShadow: {
         pinkglow: [
@@ -66,6 +66,15 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      keyframes: {
+        "blink-in": {
+          from: { backgroundColor: "white", opacity: "0%" },
+          to: { backgroundColor: "transparent", opacity: "100%" },
+        },
+      },
+      animation: {
+        "blink-in": "blink-in 0.3s ease-in-out forwards",
       },
     },
   },
