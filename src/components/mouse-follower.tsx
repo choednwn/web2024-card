@@ -10,19 +10,15 @@ type MouseFollowerProps = React.ComponentProps<"div"> & {
   onFollowerClick?: () => void;
 };
 
-export const MouseFollower = ({
-  followerSize,
-  onFollowerClick,
-  ...props
-}: MouseFollowerProps) => {
+export const MouseFollower = (props: MouseFollowerProps) => {
   const [mouseInScreen, setMouseInScreen] = React.useState(false);
   const [mouesOverFollower, setMouseOverFollower] = React.useState(false);
 
   const updatePosition = (e: { pageX: number; pageY: number }) => {
     gsap.to("#follower", {
       duration: 1.5,
-      x: e.pageX - followerSize / 2,
-      y: e.pageY - followerSize / 2,
+      x: e.pageX - props.followerSize / 2,
+      y: e.pageY - props.followerSize / 2,
       ease: "expo.out",
     });
   };
@@ -40,14 +36,14 @@ export const MouseFollower = ({
       <div
         id="follower"
         onClick={() => {
-          if (onFollowerClick) onFollowerClick();
+          if (props.onFollowerClick) props.onFollowerClick();
         }}
         onMouseEnter={() => setMouseOverFollower(true)}
         onMouseLeave={() => setMouseOverFollower(false)}
         className="select-none hover:cursor-pointer hover:drop-shadow-pinkglow"
         style={{
-          width: `${mouesOverFollower ? followerSize + MouseFollowerZoomSize : followerSize}px`,
-          height: `${mouesOverFollower ? followerSize + MouseFollowerZoomSize : followerSize}px`,
+          width: `${mouesOverFollower ? props.followerSize + MouseFollowerZoomSize : props.followerSize}px`,
+          height: `${mouesOverFollower ? props.followerSize + MouseFollowerZoomSize : props.followerSize}px`,
           transition: "width 0.5s, height 0.5s",
           transitionDuration: "1000ms",
         }}

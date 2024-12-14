@@ -1,20 +1,20 @@
 import { BoundingContainer } from "@/components/bounding-container";
+import { GameSettings } from "@/components/game/game-settings";
 import { NavigationBar } from "@/components/navigation-bar";
+import { UserProfile } from "@/components/user-profile";
 
 const DashPage = () => {
   return (
     <>
       <NavigationBar />
-      <div className="border-y">
-        {/* Profile Img & User ID */}
+      <div className="border-b">
         <BoundingContainer>
-          <div className="flex flex-row gap-2 py-16">
-            <div className="size-16 rounded-full border border-white bg-white/20"></div>
-            <div className="ml-4 flex flex-col justify-center">
-              <div className="text-xl font-bold text-white">User ID</div>
-              <div className="text-gray-400">User Description</div>
-            </div>
-          </div>
+          {/* Profile & Game Settings */}
+          <section className="grid grid-cols-1 gap-y-8 py-8 sm:grid-cols-2">
+            <UserProfile className="justify-self-start" />
+            <GameSettings className="justify-self-end" />
+          </section>
+          <section></section>
         </BoundingContainer>
       </div>
     </>

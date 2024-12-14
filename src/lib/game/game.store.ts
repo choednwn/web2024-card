@@ -2,7 +2,6 @@ import { CardAmount } from "@/lib/constants";
 import {
   CardData,
   FlippedData,
-  GameDifficulty,
   GameMode,
   GameState,
   GameStore,
@@ -13,7 +12,6 @@ import { create } from "zustand";
 export const useGameStore = create<GameStore>((set, get) => ({
   gameState: GameState.Menu,
   gameMode: GameMode.Casual,
-  gameDifficulty: GameDifficulty.Normal,
   cardAmount: CardAmount.Default,
   score: 0,
   matched: 0,
@@ -22,8 +20,6 @@ export const useGameStore = create<GameStore>((set, get) => ({
 
   setGameState: (gameState: GameState) => set({ gameState }),
   setGameMode: (gameMode: GameMode) => set({ gameMode }),
-  setGameDifficulty: (gameDifficulty: GameDifficulty) =>
-    set({ gameDifficulty }),
   setCardAmount: (cardAmount: number) => set({ cardAmount }),
   setScore: (score: number) => set({ score }),
   setMatched: (matched: number) => set({ matched }),
@@ -37,15 +33,12 @@ export const useGameStore = create<GameStore>((set, get) => ({
     newCards[col][row] = { ...newCards[col][row], ...data };
     set({ cards: newCards });
   },
-  addToFlipped: (card: FlippedData) =>
-    set({ flipped: [...get().flipped, card] }),
+  addToFlipped: (flippedCard: FlippedData) =>
+    set({ flipped: [...get().flipped, flippedCard] }),
   clearFlipped: () => set({ flipped: [] }),
   resetGame: () =>
     set({
       gameState: GameState.Menu,
-      gameMode: GameMode.Casual,
-      gameDifficulty: GameDifficulty.Normal,
-      cardAmount: CardAmount.Default,
       score: 0,
       matched: 0,
       cards: [],

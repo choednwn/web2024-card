@@ -12,7 +12,7 @@ export default {
     extend: {
       height: {
         nav: "64px",
-        "screen-sub-nav": "calc(100vh - 64px)",
+        "screen-sub-nav": "calc(100vh - 80px)",
       },
       dropShadow: {
         pinkglow: [

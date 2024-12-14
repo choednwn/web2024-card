@@ -15,3 +15,5 @@ export const hashSHA256 = async (str: string): Promise<string> => {
     return hashHex;
   });
 };
+
+

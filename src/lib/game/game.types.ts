@@ -1,6 +1,6 @@
 export enum GameState {
+  Error = "error",
   Menu = "menu",
-  Loading = "loading",
   Playing = "playing",
   Over = "over",
 }
@@ -8,12 +8,6 @@ export enum GameState {
 export enum GameMode {
   Casual = "casual",
   Hardcore = "hardcore", //! 더 좋은 이름이 생각 안남... 지정 점수에서 0 되면 탈락
-}
-
-export enum GameDifficulty {
-  Easy = "easy",
-  Normal = "normal",
-  Hard = "hard",
 }
 
 export type CardData = {
@@ -34,7 +28,6 @@ export type GameStore = {
   gameState: GameState;
   // Pregame Settings
   gameMode: GameMode;
-  gameDifficulty: GameDifficulty;
   cardAmount: number;
   // Game Data
   score: number;
@@ -45,7 +38,6 @@ export type GameStore = {
   // Functions
   setGameState: (gameState: GameState) => void;
   setGameMode: (gameMode: GameMode) => void;
-  setGameDifficulty: (gameDifficulty: GameDifficulty) => void;
   setCardAmount: (cardAmt: number) => void;
   setScore: (score: number) => void;
   setMatched: (matched: number) => void;
@@ -55,7 +47,7 @@ export type GameStore = {
     row: number,
     data: { flipped?: boolean; matched?: boolean },
   ) => void;
-  addToFlipped: (card: FlippedData) => void;
+  addToFlipped: (flippedCard: FlippedData) => void;
   clearFlipped: () => void;
   resetGame: () => void;
 };
