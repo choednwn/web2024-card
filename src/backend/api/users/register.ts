@@ -1,3 +1,5 @@
+"use server";
+
 /*  POST 예시
     try {
       const response = await fetch("/api/register", {
