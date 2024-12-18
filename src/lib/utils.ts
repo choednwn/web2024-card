@@ -1,20 +1,28 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import bcrypt from "bcrypt";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const hashSHA256 = async (str: string): Promise<string> => {
-  const utf8 = new TextEncoder().encode(str);
-  return crypto.subtle.digest("SHA-256", utf8).then((hashBuffer) => {
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray
-      .map((bytes) => bytes.toString(16).padStart(2, "0"))
-      .join("");
-    return hashHex;
-  });
-};
+// export const hashSHA256 = async (str: string): Promise<string> => {
+//   const utf8 = new TextEncoder().encode(str);
+//   return crypto.subtle.digest("SHA-256", utf8).then((hashBuffer) => {
+//     const hashArray = Array.from(new Uint8Array(hashBuffer));
+//     const hashHex = hashArray
+//       .map((bytes) => bytes.toString(16).padStart(2, "0"))
+//       .join("");
+//     return hashHex;
+//   });
+// };
+
+export async function hashPassword(password: string): Promise<string> {
+  const hashedPassword = await bcrypt.hash(password, 10);
+  return hashedPassword;
+}
+
+
 
 // 입력값 검증 유틸리티
 export const validateUserId = (userId: string): boolean =>

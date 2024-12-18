@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useUserStore } from "@/lib/user/user.store";
-import { hashSHA256 } from "@/lib/utils";
+import  { hashPassword }  from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 // 진짜진짜 오늘 마지막.. 셤 공부해야지
@@ -18,12 +18,12 @@ const LoginPageWrapper = () => {
       userPwd: { value: string };
     };
     const userId = form.userId.value;
-    const pwdHash = await hashSHA256(form.userPwd.value);
+    const userPwd = form.userPwd.value;
 
     const response = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, pwdHash }),
+      body: JSON.stringify({ userId, userPwd }),
     });
     console.log(response); //! 나중에 지우기
     console.log(response.json);

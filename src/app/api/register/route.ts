@@ -11,7 +11,7 @@
 
 import { executeQuery } from "@/lib/api/db"; // 클라이언트와 서버 공통 모듈 임포트
 import { register_member } from "@/lib/api/users";
-import { hashSHA256, validatePassword } from "@/lib/utils";
+import { hashPassword, validatePassword } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
     }
 
     // 비밀번호 해시
-    const passwordHash = await hashSHA256(userPwd);
+    const passwordHash = await hashPassword(userPwd);
     //!
 
     // 데이터베이스에 사용자 추가
