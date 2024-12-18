@@ -13,8 +13,12 @@ const RegisterPageWrapper = () => {
   const [pwdIdentical, setPwdIdentical] = useState<null | boolean>(null);
 
   const checkPasswordIdentical = () => {
-    const pwdFieldVal = document.querySelector("#pwd-field")?.value;
-    const pwdcFieldVal = document.querySelector("#pwdc-field")?.value;
+    const pwdFieldVal = (
+      document.querySelector("#pwd-field") as HTMLInputElement
+    )?.value;
+    const pwdcFieldVal = (
+      document.querySelector("#pwdc-field") as HTMLInputElement
+    )?.value;
 
     if (pwdFieldVal === pwdcFieldVal) {
       setPwdIdentical(true);
