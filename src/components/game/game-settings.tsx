@@ -68,8 +68,8 @@ export const GameSettings = ({ className }: { className?: string }) => {
           variant="ghost"
           className="size-20 rounded-md border border-border"
           onClick={() => {
-            setGameState(GameState.Ready);
             router.push("/game");
+            setGameState(GameState.Ready);
           }}
         >
           <PlayIcon />

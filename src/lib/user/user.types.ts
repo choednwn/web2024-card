@@ -6,7 +6,7 @@ export type LocalSessionData = {
 export type UserStore = {
   userId: string;
   sessionToken: string;
-  sessionValidated: boolean;
+  sessionValid: boolean;
   highScore: number;
   gamesPlayed: number;
   //! 더 생각나면 추가~

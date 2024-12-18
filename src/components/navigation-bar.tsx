@@ -2,10 +2,12 @@
 
 import { BoundingContainer } from "@/components/bounding-container";
 import { CMGLogo } from "@/components/logo";
+import { useUserStore } from "@/lib/user/user.store";
 import { useRouter } from "next/navigation";
 
 export const NavigationBar = () => {
   const router = useRouter();
+  const sessionValid = useUserStore((state) => state.sessionValid);
 
   return (
     <nav className="sticky top-0 z-50 h-nav w-screen border-b bg-background/75 backdrop-blur-lg">
@@ -14,9 +16,16 @@ export const NavigationBar = () => {
           className="size-10 cursor-pointer drop-shadow-pinkglow"
           onClick={() => router.push("/")}
         />
-        <button onClick={() => router.push("/login")} className="font-mono">
-          Login
-        </button>
+        {sessionValid && (
+          <button onClick={() => router.push("/")} className="font-mono">
+            Logout
+          </button>
+        )}
+        {!sessionValid && (
+          <button onClick={() => router.push("/login")} className="font-mono">
+            Login
+          </button>
+        )}
       </BoundingContainer>
     </nav>
   );

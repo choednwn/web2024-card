@@ -4,9 +4,24 @@ import { BoundingContainer } from "@/components/bounding-container";
 import { GameSettings } from "@/components/game/game-settings";
 import { NavigationBar } from "@/components/navigation-bar";
 import { UserProfile } from "@/components/user-profile";
+import { useUserStore } from "@/lib/user/user.store";
+import { useEffect } from "react";
 
 const DashPageWrapper = () => {
+  const userId = useUserStore((state) => state.userId);
 
+  const getHighScore = async () => {
+    const response = await fetch("/api/dash", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
+    });
+    return response.json();
+  };
+
+  useEffect(() => {
+    getHighScore().then((e) => console.log(e.highscore));
+  }, []);
   return (
     <>
       <NavigationBar />

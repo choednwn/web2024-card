@@ -1,9 +1,19 @@
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { FunMessages } from "@/lib/constants";
+import { useUserStore } from "@/lib/user/user.store";
 import { PencilLineIcon } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export const UserProfile = ({ className }: { className?: string }) => {
+  const userId = useUserStore((state) => state.userId);
+  const [funMessage, setFunMessage] = useState("");
+
+  useEffect(() => {
+    setFunMessage(FunMessages[Math.floor(Math.random() * FunMessages.length)]);
+  });
+
   return (
     <div className={className}>
       <div id="profile" className="flex h-full flex-row gap-1">
@@ -21,9 +31,9 @@ export const UserProfile = ({ className }: { className?: string }) => {
           <AvatarImage src="/characters/1.png" />
           <AvatarFallback></AvatarFallback>
         </Avatar>
-        <div className="ml-4 flex flex-col justify-start">
-          <div className="text-xl font-bold text-white">User ID</div>
-          <div className="text-gray-400">User Description</div>
+        <div className="ml-4 flex flex-col justify-start gap-1">
+          <div className="text-2xl font-bold text-white">{userId}님</div>
+          <div className="text-gray-400">{funMessage}</div>
         </div>
       </div>
     </div>

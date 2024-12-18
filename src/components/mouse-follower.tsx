@@ -1,7 +1,9 @@
 "use client";
 
+import { useUserStore } from "@/lib/user/user.store";
 import { cn } from "@/lib/utils";
 import { gsap } from "gsap";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const MouseFollowerZoomSize = 40;
@@ -13,6 +15,8 @@ type MouseFollowerProps = React.ComponentProps<"div"> & {
 export const MouseFollower = (props: MouseFollowerProps) => {
   const [mouseInScreen, setMouseInScreen] = React.useState(false);
   const [mouesOverFollower, setMouseOverFollower] = React.useState(false);
+  const sessionValid = useUserStore((state) => state.sessionValid);
+  const router = useRouter();
 
   const updatePosition = (e: { pageX: number; pageY: number }) => {
     gsap.to("#follower", {
@@ -36,7 +40,14 @@ export const MouseFollower = (props: MouseFollowerProps) => {
       <div
         id="follower"
         onClick={() => {
-          if (props.onFollowerClick) props.onFollowerClick();
+          console.log(sessionValid);
+          if (props.onFollowerClick) {
+            if (sessionValid) {
+              props.onFollowerClick();
+            } else {
+              router.push("/login");
+            }
+          }
         }}
         onMouseEnter={() => setMouseOverFollower(true)}
         onMouseLeave={() => setMouseOverFollower(false)}

@@ -40,7 +40,16 @@ export const CardImage = [
 ];
 
 /**
- * Register Constants
+ * Fun messages
  */
-export const RegisterIdMinLength = 4;
-export const RegisterPwdMinLength = 8;
+
+export const FunMessages = [
+  "꽁꽁 얼어붙은 한강 위로 고양이가 걸어다닙니다",
+  "나도 한때는 그의 손을 잡고~",
+  "오징어 땅콩 빨리 먹기!",
+  "박하스인가? 박카스인가? 그것이 문제로다",
+  "예감 맛없어",
+  '민zu씨: \"문제가 뭔지 알아? ctrl-c, ctrl-v가 안돼\"',
+  "과연 언제 끝날까?",
+  "저 근데 HTML, CSS, 자바스크립트로 해도되나여? (그게 뭐예여)"
+];

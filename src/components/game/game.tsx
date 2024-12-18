@@ -108,6 +108,9 @@ const Game = () => {
     if (matched === cardAmount) {
       setTimeout(() => {
         setGameState(GameState.Over);
+        if (gameMode === GameMode.Hardcore) {
+          setScore(score * Points.Hardcore.Multiplier);
+        }
       }, CardFlipShownMilisec);
     }
   }, [matched]);
@@ -115,10 +118,12 @@ const Game = () => {
   return (
     <div
       id="game-container"
-      className="flex size-full flex-col items-center justify-center"
+      className="flex size-full flex-col items-center justify-center gap-8"
     >
       {/* Score */}
-      <div className="">{score}</div>
+      <div className="flex font-mono text-2xl sm:text-3xl md:text-4xl">
+        SCORE: {score}
+      </div>
 
       {/* Cards */}
       <div className="flex flex-col gap-4">

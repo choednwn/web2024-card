@@ -20,13 +20,20 @@ export async function register_member(userId: string): Promise<boolean> {
 }
 
 export async function login(userId: string): Promise<User | null> {
+  const sql = "SELECT userId, userPwd FROM Users WHERE userId = ?";
+  const [results] = await executeQuery<User[]>(sql, [userId]);
+  console.log("Query results:", results);
 
-    const sql = "SELECT userId, userPwd FROM Users WHERE userId = ?";
-    const [results] = await executeQuery<User[]>(sql, [userId]);
-    console.log("Query results:",results);
+  if (results.length === 0) {
+    return null;
+  }
+  return results;
+}
 
-    if (results.length === 0){
-      return null;
-    }
-    return results;
+export async function gethighscore(userId: string) {
+  try {
+    const sql = "SELECT highscore FROM Users WHERE userId = ?";
+    const [highscore] = await executeQuery<User[]>(sql, [userId]);
+    return highscore;
+  } catch {}
 }

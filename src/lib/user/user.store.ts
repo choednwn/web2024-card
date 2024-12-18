@@ -5,7 +5,7 @@ import { create } from "zustand";
 export const useUserStore = create<UserStore>((set, get) => ({
   userId: "",
   sessionToken: "",
-  sessionValidated: false,
+  sessionValid: false,
   highScore: 0,
   gamesPlayed: 0,
 
@@ -16,7 +16,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
     set({ sessionToken: token });
   },
   setSessionValidated: (validated: boolean) => {
-    set({ sessionValidated: validated });
+    set({ sessionValid: validated });
   },
   // setHighScore: (score: number) => {
   //   set({ highScore: score });

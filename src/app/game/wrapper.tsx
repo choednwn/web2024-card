@@ -18,12 +18,11 @@ const GamePageWrapper = () => {
   const resetGame = useGameStore((state) => state.resetGame);
   const gameStore = useGameStore();
 
-  const sessionValidated = useUserStore((state) => state.sessionValidated);
+  const sessionValidated = useUserStore((state) => state.sessionValid);
   useEffect(() => {
     if (!sessionValidated) {
       router.push("/login");
-    }
-    if (gameState === GameState.Ready) {
+    } else if (gameState === GameState.Ready) {
       resetGame();
       setGameState(GameState.Playing);
     }
