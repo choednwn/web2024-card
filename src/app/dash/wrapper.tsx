@@ -5,10 +5,15 @@ import { GameSettings } from "@/components/game/game-settings";
 import { NavigationBar } from "@/components/navigation-bar";
 import { UserProfile } from "@/components/user-profile";
 import { useUserStore } from "@/lib/user/user.store";
-import { useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const DashPageWrapper = () => {
+  const router = useRouter();
   const userId = useUserStore((state) => state.userId);
+  const sessionValid = useUserStore((state) => state.sessionValid);
+  const [loaded, setLoaded] = useState(false);
 
   const getHighScore = async () => {
     const response = await fetch("/api/dash", {
@@ -20,12 +25,18 @@ const DashPageWrapper = () => {
   };
 
   useEffect(() => {
-    getHighScore().then((e) => console.log(e.highscore));
+    // getHighScore().then((e) => console.log(e.highscore));
+    if (!sessionValid) {
+      router.push("/login");
+    } else {
+      setLoaded(true);
+    }
   }, []);
+
   return (
     <>
       <NavigationBar />
-      <div className="border-b">
+      <div className={cn("border-b opacity-0", loaded && "opacity-100")}>
         <BoundingContainer>
           {/* Profile & Game Settings */}
           <section className="grid grid-cols-1 gap-y-8 py-8 sm:grid-cols-2">

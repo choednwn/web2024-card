@@ -8,8 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   if (req.method !== "POST") {
-    return NextResponse.json(null
-      , { status: 405 });
+    return NextResponse.json(null, { status: 405 });
   }
 
   const { userId, userPwd } = await req.json();
@@ -38,7 +37,7 @@ export async function POST(req: NextRequest) {
     if (existingUser) {
       return NextResponse.json(
         { success: false },
-        { status: 407, statusText: "Already exisiting user" },
+        { status: 422, statusText: "Already exisiting user" },
       );
     }
 

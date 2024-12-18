@@ -12,7 +12,7 @@ export type UserStore = {
   //! 더 생각나면 추가~
   setUserId: (userId: string) => void;
   setSessionToken: (token: string) => void;
-  setSessionValidated: (validated: boolean) => void;
+  setSessionValid: (validated: boolean) => void;
   // setHighScore: (score: number) => void;
 
   storeToLocal: (userId: string, sessionToken: string) => void;

@@ -51,5 +51,4 @@ export const FunMessages = [
   "예감 맛없어",
   '민zu씨: \"문제가 뭔지 알아? ctrl-c, ctrl-v가 안돼\"',
   "과연 언제 끝날까?",
-  "저 근데 HTML, CSS, 자바스크립트로 해도되나여? (그게 뭐예여)"
 ];

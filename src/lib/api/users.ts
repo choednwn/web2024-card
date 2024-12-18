@@ -22,9 +22,8 @@ export async function register_member(userId: string): Promise<boolean> {
 export async function login(userId: string): Promise<User | null> {
   const sql = "SELECT userId, userPwd FROM Users WHERE userId = ?";
   const [results] = await executeQuery<User[]>(sql, [userId]);
-  console.log("Query results:", results);
 
-  if (results.length === 0) {
+  if (results && results.length === 0) {
     return null;
   }
   return results;
