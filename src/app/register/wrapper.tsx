@@ -7,19 +7,56 @@ import { useRouter } from "next/navigation";
 const RegisterPageWrapper = () => {
   const router = useRouter();
 
+  const onRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget.elements as typeof e.currentTarget.elements & {
+      userId: { value: string };
+      userPwd: { value: string };
+      userPwdCheck: { value: string };
+    };
+    const userId = form.userId.value;
+    const userPwd = form.userPwd.value;
+
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId, userPwd }),
+    });
+    console.log(response); //! 나중에 지우기
+    console.log(response.json);
+  };
+
   return (
     <div className="flex h-screen-sub-nav items-center justify-center">
-      <form className="grid grid-cols-4 grid-rows-4 items-center gap-x-4 gap-y-3 rounded-md border border-border p-4">
-        <h4 className="col-span-4 text-center text-lg font-bold">회원가입</h4>
+      <form
+        onSubmit={onRegisterSubmit}
+        className="mx-4 flex w-full max-w-96 flex-col gap-4 rounded-md border border-border p-4"
+      >
+        <h4 className="text-center text-lg font-bold">회원가입</h4>
         {/* UserID */}
-        <p className="col-start-1 row-start-2 justify-self-end">아이디</p>
-        <Input required className="col-span-3 col-start-2 row-start-2" />
+        <div className="flex flex-col gap-2">
+          <p className="">아이디</p>
+          <Input name="userId" required className="w-full" />
+        </div>
+
         {/* Password */}
-        <p className="col-start-1 row-start-3 justify-self-end">비밀번호</p>
-        <Input required className="col-span-3 col-start-2 row-start-3" />
+        <div className="flex flex-col gap-2">
+          <p className="">비밀번호</p>
+          <Input name="userPwd" type="password" required className="w-full" />
+        </div>
+        {/* Password Check */}
+        <div className="flex flex-col gap-2">
+          <p className="">비밀번호 확인</p>
+          <Input
+            name="userPwdCheck"
+            type="password"
+            required
+            className="w-full"
+          />
+        </div>
 
         {/* Buttons */}
-        <div className="col-span-4 flex flex-row items-center justify-end gap-3">
+        <div className="flex flex-row justify-end">
           <Button type="submit" className="col-start-3">
             회원가입
           </Button>

@@ -1,6 +1,6 @@
 "use server";
 
-import { executeQuery } from "@/backend/db";
+import { executeQuery } from "@/lib/api/db";
 import { RowDataPacket } from "mysql2/promise";
 
 interface User extends RowDataPacket {
