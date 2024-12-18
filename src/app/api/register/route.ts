@@ -1,22 +1,15 @@
 "use server";
 
-/*  POST 예시
-    try {
-      const response = await fetch("/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, userPwd}),
-      });
-      */
-
 import { executeQuery } from "@/lib/api/db"; // 클라이언트와 서버 공통 모듈 임포트
 import { register_member } from "@/lib/api/users";
-import { hashPassword, validatePassword } from "@/lib/utils";
+import { hashPassword } from "@/lib/server-utils";
+import { validatePassword } from "@/lib/utils";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   if (req.method !== "POST") {
-    return NextResponse.json({ error: "hi" }, { status: 405 });
+    return NextResponse.json(null
+      , { status: 405 });
   }
 
   const { userId, userPwd } = await req.json();
@@ -25,7 +18,7 @@ export async function POST(req: NextRequest) {
   if (!userId || !userPwd) {
     return NextResponse.json(
       { success: false },
-      { status: 400, statusText: "Invalid userId or userPwd" },
+      { status: 4, statusText: "Invalid userId or userPwd" },
     );
   }
 
@@ -33,7 +26,7 @@ export async function POST(req: NextRequest) {
   if (!validatePassword(userPwd)) {
     return NextResponse.json(
       { success: false },
-      { status: 400, statusText: "Password rules invalid" },
+      { status: 406, statusText: "Password rules invalid" },
     );
   }
 
@@ -45,7 +38,7 @@ export async function POST(req: NextRequest) {
     if (existingUser) {
       return NextResponse.json(
         { success: false },
-        { status: 400, statusText: "Already exisiting user" },
+        { status: 407, statusText: "Already exisiting user" },
       );
     }
 
@@ -67,7 +60,7 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json(
       { success: false },
-      { status: 500, statusText: "Error adding user" },
+      { status: 408, statusText: "Error adding user" },
     );
   }
 }

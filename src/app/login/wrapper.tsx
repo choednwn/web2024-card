@@ -2,14 +2,18 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { hashPassword } from "@/lib/server-utils";
 import { useUserStore } from "@/lib/user/user.store";
-import  { hashPassword }  from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
 // 진짜진짜 오늘 마지막.. 셤 공부해야지
 const LoginPageWrapper = () => {
   const router = useRouter();
-  const login = useUserStore((state) => state.login);
+  const storeToLocal = useUserStore((state) => state.storeToLocal);
+  const setUserId = useUserStore((state) => state.setUserId);
+  const setSessionValidated = useUserStore(
+    (state) => state.setSessionValidated,
+  );
 
   const onLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,8 +29,16 @@ const LoginPageWrapper = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, userPwd }),
     });
-    console.log(response); //! 나중에 지우기
-    console.log(response.json);
+
+    if (response.status === 201) {
+      storeToLocal(userId, "temphash"); //! TEMP HASH CHANGE PLEASE
+      router.push("/dash");
+    }
+
+    //! 임시임시
+    setUserId(userId);
+    setSessionValidated(true);
+    router.push("/dash");
   };
 
   return (

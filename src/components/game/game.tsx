@@ -3,6 +3,7 @@ import { CardFlipShownMilisec, Points } from "@/lib/constants";
 import { useGameStore } from "@/lib/game/game.store";
 import { GameMode, GameState } from "@/lib/game/game.types";
 import { clearCards, getGridSize, setCardArray } from "@/lib/game/game.utils";
+import { useUserStore } from "@/lib/user/user.store";
 import { useEffect } from "react";
 
 const Game = () => {
@@ -37,10 +38,13 @@ const Game = () => {
       }
 
       // Set Cards
-      clearCards(cards);
       setCards(setCardArray(gridSize[0], gridSize[1], cardAmount));
 
       // Set Score
+      /**
+       * Casual Mode: Starting points + Points per match + Deduct per miss
+       * Hardcore Mode: Starting points is cards * points-per-card. No add but rather deduct on wrong
+       */
       if (gameMode === GameMode.Casual) {
         setScore(Points.Casual.StartingPoints);
       } else {
@@ -53,15 +57,18 @@ const Game = () => {
 
   // Check Flipped
   useEffect(() => {
-    //! Hardcore 모드 구현해야 함.
     if (flipped.length === 2) {
       if (
         cards[flipped[0].col][flipped[0].row].imageId ===
         cards[flipped[1].col][flipped[1].row].imageId
       ) {
         // Matched
-        // Update score
-        setScore(score + Points.Casual.Match);
+        // Update score (Only casual as hardcore only deducts)
+        if (gameMode === GameMode.Casual) {
+          setScore(score + Points.Casual.Match);
+        }
+
+        // Update Cards
         updateCard(flipped[0].col, flipped[0].row, { matched: true });
         updateCard(flipped[1].col, flipped[1].row, { matched: true });
         setMatched(matched + 2);
@@ -69,11 +76,24 @@ const Game = () => {
       } else {
         // Not Matched
         // Update Score
-        if (score + Points.Casual.Mismatch < 0) {
-          setScore(0);
+        if (gameMode === GameMode.Casual) {
+          // casual
+          if (score + Points.Casual.Mismatch < 0) {
+            setScore(0);
+          } else {
+            setScore(score + Points.Casual.Mismatch);
+          }
         } else {
-          setScore(score + Points.Casual.Mismatch);
+          // hardcore
+          if (score + Points.Hardcore.Mismatch <= 0) {
+            setScore(0);
+            //! dumb idea
+            setMatched(cardAmount);
+          } else {
+            setScore(score + Points.Hardcore.Mismatch);
+          }
         }
+
         setTimeout(() => {
           updateCard(flipped[0].col, flipped[0].row, { flipped: false });
           updateCard(flipped[1].col, flipped[1].row, { flipped: false });
@@ -95,10 +115,10 @@ const Game = () => {
   return (
     <div
       id="game-container"
-      className="flex size-full items-center justify-center"
+      className="flex size-full flex-col items-center justify-center"
     >
       {/* Score */}
-      <div></div>
+      <div className="">{score}</div>
 
       {/* Cards */}
       <div className="flex flex-col gap-4">
@@ -124,7 +144,7 @@ const Game = () => {
                     }
                   }
                 }}
-                className="animate-blink-in size-24 cursor-pointer duration-300 sm:size-32"
+                className="size-24 animate-blink-in cursor-pointer duration-300 sm:size-32"
                 style={{ animationDelay: `${i * 0.1 + j * 0.1 + 0.1}s` }}
               >
                 <Card {...card} />

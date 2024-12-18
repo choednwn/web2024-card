@@ -1,10 +1,20 @@
+export type LocalSessionData = {
+  userId: string;
+  sessionToken: string;
+};
+
 export type UserStore = {
   userId: string;
-  sessionValidated: boolean;
   sessionToken: string;
+  sessionValidated: boolean;
   highScore: number;
   gamesPlayed: number;
   //! 더 생각나면 추가~
+  setUserId: (userId: string) => void;
+  setSessionToken: (token: string) => void;
+  setSessionValidated: (validated: boolean) => void;
+  // setHighScore: (score: number) => void;
 
-  login: (userId: string, pwdHash: string) => boolean;
+  storeToLocal: (userId: string, sessionToken: string) => void;
+  grabFromLocal: () => LocalSessionData | null;
 };

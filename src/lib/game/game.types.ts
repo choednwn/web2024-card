@@ -1,6 +1,7 @@
 export enum GameState {
   Error = "error",
   Menu = "menu",
+  Ready = "ready",
   Playing = "playing",
   Over = "over",
 }

@@ -38,7 +38,6 @@ export const useGameStore = create<GameStore>((set, get) => ({
   clearFlipped: () => set({ flipped: [] }),
   resetGame: () =>
     set({
-      gameState: GameState.Menu,
       score: 0,
       matched: 0,
       cards: [],

@@ -1,6 +1,11 @@
 {
   "name": "web2024",
   "version": "0.1.0",
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",

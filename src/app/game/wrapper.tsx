@@ -2,16 +2,33 @@
 
 import { BoundingContainer } from "@/components/bounding-container";
 import Game from "@/components/game/game";
+import { GameOver } from "@/components/game/game-over";
 import { NavigationBar } from "@/components/navigation-bar";
 import { Button } from "@/components/ui/button";
 import { useGameStore } from "@/lib/game/game.store";
 import { GameState } from "@/lib/game/game.types";
+import { useUserStore } from "@/lib/user/user.store";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const GamePageWrapper = () => {
   const router = useRouter();
   const gameState = useGameStore((state) => state.gameState);
   const setGameState = useGameStore((state) => state.setGameState);
+  const resetGame = useGameStore((state) => state.resetGame);
+  const gameStore = useGameStore();
+
+  const sessionValidated = useUserStore((state) => state.sessionValidated);
+  useEffect(() => {
+    if (!sessionValidated) {
+      router.push("/login");
+    }
+    if (gameState === GameState.Ready) {
+      resetGame();
+      setGameState(GameState.Playing);
+    }
+    console.log(gameStore);
+  }, [gameState]);
 
   return (
     <>
@@ -21,7 +38,7 @@ const GamePageWrapper = () => {
           {/* 게임 플레이 */}
           {gameState === GameState.Playing && <Game />}
           {/* 게임 종료 */}
-          {gameState === GameState.Over && <></>}
+          {gameState === GameState.Over && <GameOver />}
           {/* 메뉴 (게임 진행 X) */}
           {gameState === GameState.Menu && (
             <div className="flex flex-col items-center gap-5">

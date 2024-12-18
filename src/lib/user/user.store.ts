@@ -4,23 +4,42 @@ import { create } from "zustand";
 
 export const useUserStore = create<UserStore>((set, get) => ({
   userId: "",
-  sessionValidated: false,
   sessionToken: "",
+  sessionValidated: false,
   highScore: 0,
   gamesPlayed: 0,
 
-  login: (userId: string, pwdHash: string) => {
-    backendLogin(userId)
-      .then((res) => {
-        if (pwdHash === res?.userPwd) {
-          set({ userId, sessionValidated: true });
-          //! do something with session token blah blah blah
-          return true;
+  setUserId: (userId: string) => {
+    set({ userId });
+  },
+  setSessionToken: (token: string) => {
+    set({ sessionToken: token });
+  },
+  setSessionValidated: (validated: boolean) => {
+    set({ sessionValidated: validated });
+  },
+  // setHighScore: (score: number) => {
+  //   set({ highScore: score });
+  // },
+
+  storeToLocal: (userId: string, sessionToken: string) => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(
+        "user",
+        JSON.stringify({ userId: userId, sessionToken: sessionToken }),
+      );
+    }
+  },
+  grabFromLocal: () => {
+    if (typeof window !== "undefined") {
+      const localData = window.localStorage.getItem("user");
+      if (localData) {
+        const { userId, sessionToken } = JSON.parse(localData);
+        if (userId && sessionToken) {
+          return { userId, sessionToken };
         }
-      })
-      .catch(() => {
-        console.log("Login failed");
-      });
-    return false;
+      }
+    }
+    return null;
   },
 }));

@@ -1,9 +1,12 @@
+"use client";
+
 import { BoundingContainer } from "@/components/bounding-container";
 import { GameSettings } from "@/components/game/game-settings";
 import { NavigationBar } from "@/components/navigation-bar";
 import { UserProfile } from "@/components/user-profile";
 
 const DashPageWrapper = () => {
+
   return (
     <>
       <NavigationBar />

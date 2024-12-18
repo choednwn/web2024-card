@@ -2,10 +2,18 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useUserStore } from "@/lib/user/user.store";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const RegisterPageWrapper = () => {
   const router = useRouter();
+  const [statusCode, setStatusCode] = useState(0);
+  const setUserId = useUserStore((state) => state.setUserId);
+  const setSessionToken = useUserStore((state) => state.setSessionToken);
+  const setSessionValidated = useUserStore(
+    (state) => state.setSessionValidated,
+  );
 
   const onRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,15 +30,19 @@ const RegisterPageWrapper = () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ userId, userPwd }),
     });
-    console.log(response); //! 나중에 지우기
-    console.log(response.json);
+    setStatusCode(response.status);
+
+    //! 임시임시
+    setUserId(userId);
+    setSessionValidated(true);
+    router.push("/dash");
   };
 
   return (
     <div className="flex h-screen-sub-nav items-center justify-center">
       <form
         onSubmit={onRegisterSubmit}
-        className="mx-4 flex w-full max-w-96 flex-col gap-4 rounded-md border border-border p-4"
+        className="mx-4 flex w-full max-w-96 flex-col gap-2 rounded-md border border-border p-4"
       >
         <h4 className="text-center text-lg font-bold">회원가입</h4>
         {/* UserID */}

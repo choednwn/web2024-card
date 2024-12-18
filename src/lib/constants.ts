@@ -3,13 +3,13 @@
  */
 export const Points = {
   Casual: {
-    StartingPoints: 50,
+    StartingPoints: 30,
     Match: 10,
-    Mismatch: -3,
+    Mismatch: -5,
   },
   Hardcore: {
     Multiplier: 3,
-    PointsPerCard: 5, // 카드 개수 * PointesPerCard => 시작 점수
+    PointsPerCard: 3, // 카드 개수 * PointesPerCard => 시작 점수
     Mismatch: -3,
   },
 } as const;
