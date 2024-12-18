@@ -20,13 +20,13 @@ export async function register_member(userId: string): Promise<boolean> {
 }
 
 export async function login(userId: string): Promise<User | null> {
-  try {
+
     const sql = "SELECT userId, userPwd FROM Users WHERE userId = ?";
     const [results] = await executeQuery<User[]>(sql, [userId]);
+    console.log("Query results:",results);
 
-    return results.length > 0 ? results[0] : null;
-  } catch (error) {
-    console.error("사용자 조회 중 오류 발생:", error);
-    throw new Error("사용자 조회 중 오류 발생");
-  }
+    if (results.length === 0){
+      return null;
+    }
+    return results;
 }

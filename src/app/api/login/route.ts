@@ -4,6 +4,7 @@
 ///login은 전달할 때 userPwd에다가 해시된 비번을 넣어서 전달해줘.
 import { login } from "@/lib/api/users";
 import { NextRequest, NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 // Type Definitions
 // type Data = {
@@ -18,10 +19,10 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json();
-  const { userId, pwdHash } = body;
+  const { userId, userPwd } = body;
 
   // 기본적인 유효성 검사
-  if (!userId || !pwdHash) {
+  if (!userId || !userPwd) {
     // return res.status(400).json({ success: false });
     return NextResponse.json(
       { success: false },
@@ -32,6 +33,7 @@ export async function POST(req: NextRequest) {
   try {
     // 사용자 조회
     const user = await login(userId);
+    console.log("user test:",user);
 
     if (!user) {
       // return res.status(400).json({ success: false });
@@ -39,9 +41,15 @@ export async function POST(req: NextRequest) {
     }
 
     // 비밀번호 검증
-    if (pwdHash !== user.userPwd) {
-      // return res.status(400).json({ success: false });
-      return NextResponse.json({ success: false }, { status: 400, statusText: "lol wrong passwrod"});
+    // if (pwdHash !== user.userPwd) {
+    //   // return res.status(400).json({ success: false });
+    //   return NextResponse.json({ success: false }, { status: 400, statusText: "lol wrong passwrod"});
+    // }
+
+    const isMatch = await bcrypt.compare(userPwd, user.userPwd);
+
+    if (!isMatch) {
+      return NextResponse.json({ success: false }, { status: 400, statusText: "Wrong password" });
     }
 
     // 로그인 성공
@@ -54,5 +62,16 @@ export async function POST(req: NextRequest) {
     console.error("로그인 중 오류 발생:", error);
     // return res.status(500).json({ success: false });
     return NextResponse.json({ success: false }, { status: 500 });
+  }
+}
+
+
+async function verifyPassword(userPwd: string, HashedPwd: string) {
+  const isMatch = await bcrypt.compare(userPwd,HashedPwd);
+  if (!isMatch) {
+    return NextResponse.json(
+      { success: false },
+      { status: 400, statusText: "wrong password" },
+    );
   }
 }
