@@ -31,9 +31,9 @@ export const GameOver = () => {
   }, [gameState]);
 
   return (
-    <div className="flex flex-col gap-4 font-bold">
-      <div>{score}</div>
-      <Button onClick={() => router.push("/dash")}>Back to Dash</Button>
+    <div className="flex flex-col items-center justify-center gap-8 font-bold">
+      <h1 className="text-4xl">나의 점수: {score}</h1>
+      <Button onClick={() => router.push("/dash")}>Return to Dashboard</Button>
     </div>
   );
 };

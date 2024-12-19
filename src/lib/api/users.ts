@@ -36,3 +36,49 @@ export async function gethighscore(userId: string) {
     return highscore;
   } catch {}
 }
+
+/*
+  특정 userId의 최근 10개의 Scores 기록을 가져오는 함수
+  @param userId 유저 ID
+  @returns 최근 10개의 Scores 기록
+ */
+export async function getRecentScores(userId: string): Promise<any[]> {
+  try {
+    const sql = `
+        SELECT userId, score, num_played
+        FROM Scores
+        WHERE userId = ?
+        ORDER BY num_played DESC
+        LIMIT 10;
+      `;
+    const rows = await executeQuery(sql, [userId]); // MySQL 쿼리 실행
+    console.log("rows:", rows);
+    return rows as any[];
+  } catch (error) {
+    console.error("Error fetching recent scores:", error);
+    throw new Error("Failed to fetch recent scores");
+  }
+}
+
+export async function getrank(page: number): Promise<any[]> {
+  const first_value = (page - 1) * 15 + 1;
+  const last_value = page * 15;
+  console.log("first_value:", first_value);
+  console.log("last_value:", last_value);
+  try {
+    const sql = `
+        WITH Scores AS (
+    SELECT userId, score, ROW_NUMBER() OVER (ORDER BY score DESC) AS ranking
+    FROM Scores)
+    SELECT userId, score, ranking
+    FROM Scores
+    WHERE ranking BETWEEN ? AND ?;
+      `;
+    const rows = await executeQuery(sql, [first_value, last_value]); // MySQL 쿼리 실행
+    console.log("rows:", rows);
+    return rows as any[];
+  } catch (error) {
+    console.error("Error fetching recent scores:", error);
+    throw new Error("Failed to fetch recent scores");
+  }
+}

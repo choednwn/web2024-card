@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 export const NavigationBar = () => {
   const router = useRouter();
   const sessionValid = useUserStore((state) => state.sessionValid);
+  const setSessionValid = useUserStore((state) => state.setSessionValid);
 
   return (
     <nav className="sticky top-0 z-50 h-nav w-screen border-b bg-background/75 backdrop-blur-lg">
@@ -17,7 +18,13 @@ export const NavigationBar = () => {
           onClick={() => router.push("/")}
         />
         {sessionValid && (
-          <button onClick={() => router.push("/")} className="font-mono">
+          <button
+            onClick={() => {
+              router.push("/");
+              setSessionValid(false);
+            }}
+            className="font-mono"
+          >
             Logout
           </button>
         )}

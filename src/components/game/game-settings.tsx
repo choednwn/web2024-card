@@ -66,7 +66,7 @@ export const GameSettings = ({ className }: { className?: string }) => {
         </div>
         <Button
           variant="ghost"
-          className="size-20 rounded-md border border-border"
+          className="size-20 rounded-md border-2 border-border transition-shadow duration-300 hover:shadow-md hover:shadow-orange-300"
           onClick={() => {
             router.push("/game");
             setGameState(GameState.Ready);

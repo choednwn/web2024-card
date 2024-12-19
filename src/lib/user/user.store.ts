@@ -18,9 +18,6 @@ export const useUserStore = create<UserStore>((set, get) => ({
   setSessionValid: (validated: boolean) => {
     set({ sessionValid: validated });
   },
-  // setHighScore: (score: number) => {
-  //   set({ highScore: score });
-  // },
 
   storeToLocal: (userId: string, sessionToken: string) => {
     if (typeof window !== "undefined") {
@@ -32,7 +29,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
   },
   grabFromLocal: () => {
     if (typeof window !== "undefined") {
-      const localData = localStorage.getItem("user");
+      const localData = localStorage.getItem("userData");
       if (localData) {
         const { userId, sessionToken } = JSON.parse(localData);
         if (userId && sessionToken) {

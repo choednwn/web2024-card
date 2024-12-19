@@ -16,7 +16,7 @@ export const UserProfile = ({ className }: { className?: string }) => {
 
   return (
     <div className={className}>
-      <div id="profile" className="flex h-full flex-row gap-1">
+      <div id="profile" className="flex h-full flex-row items-center gap-1">
         <Avatar className="relative size-20">
           {/* Change Profile Button */}
           <div

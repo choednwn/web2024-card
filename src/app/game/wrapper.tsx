@@ -26,7 +26,6 @@ const GamePageWrapper = () => {
       resetGame();
       setGameState(GameState.Playing);
     }
-    console.log(gameStore);
   }, [gameState]);
 
   return (

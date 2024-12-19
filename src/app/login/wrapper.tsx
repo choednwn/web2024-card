@@ -2,17 +2,23 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { login } from "@/lib/api/users";
+import { autobust } from "@/lib/autobust";
+import { USEAUTOBUST } from "@/lib/constants";
+import { hashPassword } from "@/lib/server-utils";
 import { useUserStore } from "@/lib/user/user.store";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // 진짜진짜 오늘 마지막.. 셤 공부해야지
 const LoginPageWrapper = () => {
   const router = useRouter();
   const [statusCode, setStatusCode] = useState(0);
+  const sessionValid = useUserStore((state) => state.sessionValid);
   const storeToLocal = useUserStore((state) => state.storeToLocal);
   const setUserId = useUserStore((state) => state.setUserId);
+  const setSessionToken = useUserStore((state) => state.setSessionToken);
   const setSessionValid = useUserStore((state) => state.setSessionValid);
 
   const onLoginSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,14 +39,24 @@ const LoginPageWrapper = () => {
 
     // On success
     if (response.status === 200) {
-      //! Get Temp Hash
-      storeToLocal(userId, "temphash");
-      setUserId(userId);
-      setSessionValid(true); //! don't know if I should set validated straight away
+      const storedHash = await login(userId);
+      if (storedHash) {
+        //! stupid and was not the plan but I got no time.
+        storeToLocal(userId, storedHash.userPwd);
+        setUserId(userId);
+        setSessionToken(storedHash.userPwd);
+        setSessionValid(true); //! don't know if I should set validated straight away
+      }
 
-      router.push("/dash");
+      // router.push("/dash");
     }
   };
+
+  useEffect(() => {
+    if (sessionValid) {
+      router.push("/dash");
+    }
+  }, [sessionValid]);
 
   return (
     <div className="flex h-screen-sub-nav items-center justify-center">
@@ -75,13 +91,24 @@ const LoginPageWrapper = () => {
             variant="outline"
             type="button"
             onClick={() => router.push("/register")}
-            className="col-start-3"
           >
             회원가입
           </Button>
-          <Button type="submit" className="col-start-3">
-            로그인
-          </Button>
+          <Button type="submit">로그인</Button>
+          {USEAUTOBUST && (
+            <Button
+              type="button"
+              onClick={() =>
+                autobust(
+                  ["woojuneedssleep", "pineapplepizza", "macbooooook"],
+                  10,
+                  70,
+                )
+              }
+            >
+              AUTOBUST
+            </Button>
+          )}
         </div>
       </form>
     </div>

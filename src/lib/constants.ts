@@ -49,6 +49,12 @@ export const FunMessages = [
   "오징어 땅콩 빨리 먹기!",
   "박하스인가? 박카스인가? 그것이 문제로다",
   "예감 맛없어",
-  '민zu씨: \"문제가 뭔지 알아? ctrl-c, ctrl-v가 안돼\"',
+  '\"문제가 뭔지 알아? ctrl-c, ctrl-v가 안돼\" - 민zu씨',
   "과연 언제 끝날까?",
 ];
+
+/**
+ * USE AUTOBUST
+ * a script. it's a script
+ */
+export const USEAUTOBUST = false;

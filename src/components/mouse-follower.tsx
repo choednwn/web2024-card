@@ -40,7 +40,6 @@ export const MouseFollower = (props: MouseFollowerProps) => {
       <div
         id="follower"
         onClick={() => {
-          console.log(sessionValid);
           if (props.onFollowerClick) {
             if (sessionValid) {
               props.onFollowerClick();
