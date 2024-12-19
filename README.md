@@ -19,8 +19,10 @@
 - etc.
 
 ## Screenshots
-|                                |                                  |
-| :----------------------------: | :------------------------------: |
-|     ![Home](imgs/home.png)     |     ![Login](imgs/login.png)     |
-| ![Register](imgs/register.png) | ![Dashboard](imgs/dashboard.png) |
-|     ![Game](imgs/game.png)     |                                  |
+<div align="left">
+  <img src="imgs/home.png" width="48%">
+  <img src="imgs/login.png" width="48%">
+  <img src="imgs/register.png" width="48%">
+  <img src="imgs/dashboard.png" width="48%">
+  <img src="imgs/game.png" width="48%">
+</div>
