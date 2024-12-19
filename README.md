@@ -6,7 +6,7 @@
   ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
 </div>
 
-> 2024년 2학기 기웹프로그래밍 - 조별 프로젝트  
+> 2024년 2학기 기초웹프로그래밍 - 조별 프로젝트  
 > "Made with love and pain by the team"  
 >  
 > Made by: Nahyun Kim, Chaemin Jin, Wooju Choi, Minju Han 
